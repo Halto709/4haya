@@ -21,6 +21,8 @@ public class AuthConfiguration {
             .logoutUrl("/logout")
             .logoutSuccessUrl("/")) // ログアウト後に / にリダイレクト
         .authorizeHttpRequests(authz -> authz
+            .requestMatchers(AntPathRequestMatcher.antMatcher("/yonhaya/**"))
+            .authenticated() // /sample3/以下は認証済みであること
             .requestMatchers(AntPathRequestMatcher.antMatcher("/**"))
             .permitAll())// 上記以外は全員アクセス可能
         .csrf(csrf -> csrf
@@ -42,15 +44,19 @@ public class AuthConfiguration {
     // ユーザ名，パスワード，ロールを指定してbuildする
     // このときパスワードはBCryptでハッシュ化されているため，{bcrypt}とつける
     // ハッシュ化せずに平文でパスワードを指定する場合は{noop}をつける
-    // user1/p@ss,user2/p@ss,admin/p@ss
+    // user1~4/isdev, owner/isdev24
 
     UserDetails user1 = User.withUsername("user1")
-        .password("{bcrypt}$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e").roles("USER").build();
+        .password("{bcrypt}$2y$05$0BbAzcvroHopgw15fC9sMult03PtKZB42eiHuDNBVH5sbeepKIgna").roles("USER").build();
     UserDetails user2 = User.withUsername("user2")
-        .password("{bcrypt}$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e").roles("USER").build();
-    UserDetails admin = User.withUsername("admin")
-        .password("{bcrypt}$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e").roles("ADMIN").build();
+        .password("{bcrypt}$2y$05$zpQ9uf4IQLTzXv0lT0Eile6U1B/vcC49Ar7pmJsGC1j0b1TX4NflO").roles("USER").build();
+    UserDetails user3 = User.withUsername("user3")
+        .password("{bcrypt}$2y$05$rqIxG6nPTvCdI.s2E4tno.0/zyC25EtOdm.rUQpwh0QVBske5UB7m").roles("USER").build();
+    UserDetails user4 = User.withUsername("user4")
+        .password("{bcrypt}$2y$05$AWqGLaZDQL0JFGxjfKq49.tcbd51kja1U6fCx2dpalde06iC6d.0O").roles("USER").build();
+    UserDetails owner = User.withUsername("owner")
+        .password("{bcrypt}$2y$05$H0OkImCYjg3.h8GK/.2Za.SIE9YYpsX1owWtr.CvedI0YZrZtRhiS").roles("OWNER").build();
     // 生成したユーザをImMemoryUserDetailsManagerに渡す（いくつでも良い）
-    return new InMemoryUserDetailsManager(user1, user2, admin);
+    return new InMemoryUserDetailsManager(user1, user2, user3, user4, owner);
   }
 }
