@@ -3,4 +3,10 @@
     [[${quiz.id}]]
     [[${quiz.question}]]
   </div>
+  <div th:if="${Choices}">
+    [[${Choices.choice_1}]]
+    [[${Choices.choice_2}]]
+    [[${Choices.choice_3}]]
+    [[${Choices.choice_4}]]
+  </div>
 </body>

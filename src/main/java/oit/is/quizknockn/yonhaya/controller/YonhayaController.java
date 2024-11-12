@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.quizknockn.yonhaya.model.Quiz;
+import oit.is.quizknockn.yonhaya.model.QuizChoicecsMapper;
+import oit.is.quizknockn.yonhaya.model.QuizChoices;
 import oit.is.quizknockn.yonhaya.model.QuizMapper;
 import oit.is.quizknockn.yonhaya.model.Room;
 import oit.is.quizknockn.yonhaya.service.AsyncEnterRoom;
@@ -30,6 +32,12 @@ public class YonhayaController {
 
   @Autowired
   private QuizMapper quizMapper;
+
+  @Autowired
+  private QuizChoicecsMapper quizChoicecsMapper;
+
+  // デモ用のクイズインデックス
+  private int quizIndex = 1;
 
   @GetMapping("")
   public String sample21() {
@@ -60,8 +68,10 @@ public class YonhayaController {
 
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
-    Quiz quiz = quizMapper.selectById(1);
+    Quiz quiz = quizMapper.selectById(quizIndex);
+    QuizChoices quizChoices = quizChoicecsMapper.selectById(quizIndex);
     model.addAttribute("quiz", quiz);
+    model.addAttribute("Choices", quizChoices);
     return "quiz.html";
   }
 }
