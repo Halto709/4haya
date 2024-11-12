@@ -53,4 +53,8 @@ public class YonhayaController {
     return emitter;
   }
 
+  @GetMapping("quiz")
+  public String Shift_Quiz(){
+    return "quiz.html";
+  }
 }
