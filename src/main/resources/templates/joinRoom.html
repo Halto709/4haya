@@ -22,6 +22,10 @@
           results += result; // 結果を連結
         }
 
+        if(user_list.length == 2 ){
+          results += "<a href='/yonhaya/quiz'>クイズ</a>"
+        }
+
         document.getElementById("roomInfo").innerHTML = results;
 
       }
