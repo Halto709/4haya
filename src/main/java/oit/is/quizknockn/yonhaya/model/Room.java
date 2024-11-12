@@ -1,6 +1,5 @@
 package oit.is.quizknockn.yonhaya.model;
 
-
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
@@ -10,15 +9,16 @@ public class Room {
   ArrayList<String> users = new ArrayList<>();
   int roomNo = 1;
 
-  public void addUser(String name) {
+  public boolean addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
     for (String s : this.users) {
       if (s.equals(name)) {
-        return;
+        return false;
       }
     }
     // 同名のユーザが居なかった場合はusersにnameを追加する
     this.users.add(name);
+    return true;
   }
 
   // 以降はフィールドのgetter/setter
