@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.springframework.org/schema/security">
+
+<head>
+  <meta charset="utf-8">
+  <title>janken result</title>
+  <script>
+    window.onload = function () {
+
+      const sse = new EventSource('/yonhaya/roomInfo');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage");
+        var user_list = JSON.parse(event.data);
+
+        results = "";
+
+        for (var i = 0; i < user_list.length; i++) {
+          var user = user_list[i];
+
+          // 出力の形式に従った文字列の構築
+          var result = "<p> " + user + " が入室しました</p>";
+          results += result; // 結果を連結
+        }
+
+        document.getElementById("roomInfo").innerHTML = results;
+
+      }
+    }
+  </script>
+</head>
+
+
+<body>
+  <div th:if="${room}">
+    <ul>
+      <!--roomオブジェクトのroomNoというフィールドを指定している-->
+      <li>RoomNo:[[${room.roomNo}]]</li>
+      <!--eachは所謂for each．この場合roomオブジェクトのusersフィールドにあるすべてのデータを一通り表示する
+        thが指定されているので[]が不要になる-->
+    </ul>
+  </div>
+
+  <div id="roomInfo"></div>
+</body>
