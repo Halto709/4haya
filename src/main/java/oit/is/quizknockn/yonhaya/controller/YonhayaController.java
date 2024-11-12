@@ -34,12 +34,15 @@ public class YonhayaController {
   @GetMapping("di")
   public String sample38(Principal prin, ModelMap model) {
     String loginUser = prin.getName();
-    this.room.addUser(loginUser);
-    // ユーザがルームに追加される
-    this.asyncEnterRoom.userEnter(loginUser);
-    model.addAttribute("room", this.room);
+    if (this.room.addUser(loginUser)) {
+      // ユーザがルームに追加される
+      this.asyncEnterRoom.userEnter(this.room.getUsers());
+      model.addAttribute("room", this.room);
 
-    return "joinRoom.html";
+      return "joinRoom.html";
+    }
+    model.addAttribute("error", loginUser);
+    return "4haya.html";
   }
 
   @GetMapping("roomInfo")

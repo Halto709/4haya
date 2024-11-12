@@ -16,9 +16,9 @@ public class AsyncEnterRoom {
   private boolean userUpdate = false;
 
   @Async
-  public void userEnter(String name) {
+  public void userEnter(ArrayList<String> name) {
     logger.info("User Enters a Room");
-    this.joinedUser.add(name);
+    this.joinedUser = name;
     this.userUpdate = true;
   }
 
