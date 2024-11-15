@@ -13,7 +13,8 @@ CREATE TABLE users (
 
 CREATE TABLE quizzes (
     id IDENTITY,
-    question VARCHAR NOT NULL
+    question VARCHAR NOT NULL,
+    isActive BOOLEAN NOT NULL
 );
 
 CREATE TABLE quizOptions (

@@ -71,11 +71,20 @@ public class YonhayaController {
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
     // quizIndexを1から10のランダムな値に設定
-    quizIndex = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
-    Quiz quiz = quizMapper.selectById(quizIndex);
-    QuizChoices quizChoices = quizChoicecsMapper.selectById(quizIndex);
-    model.addAttribute("quiz", quiz);
-    model.addAttribute("Choices", quizChoices);
+    int flag = 0;
+    while (flag != 1) {
+      quizIndex = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
+      Quiz quiz = quizMapper.selectById(quizIndex);
+      if (quiz.getIsActive()) {
+        QuizChoices quizChoices = quizChoicecsMapper.selectById(quizIndex);
+        model.addAttribute("quiz", quiz);
+        model.addAttribute("Choices", quizChoices);
+
+        quiz.setIsActive(false);
+        quizMapper.updateById(quiz);
+      }
+      flag = 1;
+    }
     return "quiz.html";
   }
 }
