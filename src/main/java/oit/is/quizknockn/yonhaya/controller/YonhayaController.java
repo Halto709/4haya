@@ -1,6 +1,7 @@
 package oit.is.quizknockn.yonhaya.controller;
 
 import java.security.Principal;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,6 +39,7 @@ public class YonhayaController {
 
   // デモ用のクイズインデックス
   private int quizIndex = 1;
+  private int maxquizINdex = 10;
 
   @GetMapping("")
   public String sample21() {
@@ -68,6 +70,8 @@ public class YonhayaController {
 
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
+    // quizIndexを1から10のランダムな値に設定
+    quizIndex = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
     Quiz quiz = quizMapper.selectById(quizIndex);
     QuizChoices quizChoices = quizChoicecsMapper.selectById(quizIndex);
     model.addAttribute("quiz", quiz);
