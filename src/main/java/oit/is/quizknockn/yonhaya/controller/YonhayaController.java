@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
-import oit.is.quizknockn.yonhaya.model.Quiz;
-import oit.is.quizknockn.yonhaya.model.QuizChoicecsMapper;
-import oit.is.quizknockn.yonhaya.model.QuizChoices;
-import oit.is.quizknockn.yonhaya.model.QuizMapper;
 import oit.is.quizknockn.yonhaya.model.Room;
 import oit.is.quizknockn.yonhaya.service.AsyncEnterRoom;
+import oit.is.quizknockn.yonhaya.model.Quiz;
+import oit.is.quizknockn.yonhaya.model.QuizMapper;
+import oit.is.quizknockn.yonhaya.model.QuizChoices;
+import oit.is.quizknockn.yonhaya.model.QuizChoicecsMapper;
+import oit.is.quizknockn.yonhaya.model.User;
+import oit.is.quizknockn.yonhaya.model.UserMapper;
 
 @Controller
 @RequestMapping("/yonhaya")
@@ -37,12 +39,17 @@ public class YonhayaController {
   @Autowired
   private QuizChoicecsMapper quizChoicecsMapper;
 
+  @Autowired
+  private UserMapper userMapper;
+
   // デモ用のクイズインデックス
   private int quizIndex = 1;
   private int maxquizINdex = 10;
 
   @GetMapping("")
-  public String sample21() {
+  public String sample21(Principal prin, ModelMap model) {
+    User loginUser = userMapper.selectByUserName(prin.getName());
+    model.addAttribute("loginUser", loginUser);
     return "4haya.html";
   }
 
