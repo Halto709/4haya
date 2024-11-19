@@ -76,7 +76,7 @@ public class YonhayaController {
       quizIndex = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
       Quiz quiz = quizMapper.selectById(quizIndex);
       if (quiz.getIsActive()) {
-        QuizChoices quizChoices = quizChoicecsMapper.selectById(quizIndex);
+        QuizChoices quizChoices = quizChoicecsMapper.selectAllById(quizIndex);
         model.addAttribute("quiz", quiz);
         model.addAttribute("Choices", quizChoices);
 
