@@ -4,14 +4,14 @@
     [[${quiz.question}]]
   </div>
   <div th:if="${Choices}">
-    <form th:action="@{/yonhaya/quiz}" method="post">
+    <form th:action="@{/yonhaya/judge}" method="post">
       <input type="submit" name="choice" th:value="${Choices.choice_1}">
       <input type="submit" name="choice" th:value="${Choices.choice_2}">
       <input type="submit" name="choice" th:value="${Choices.choice_3}">
       <input type="submit" name="choice" th:value="${Choices.choice_4}">
     </form>
   </div>
-  <div th:if="${answer}">
-    [[${answer}]]
+  <div th:if="${result}">
+    [[${result}]]
   </div>
 </body>
