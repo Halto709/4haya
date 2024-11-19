@@ -10,7 +10,7 @@ public interface QuizChoicecsMapper {
   QuizChoices selectAllById(int id);
 
   @Select("SELECT correct FROM quizoptions WHERE id = #{id}")
-  Integer selectById(int id);
+  String selectById(int id);
 
   @Select("SELECT Choice_1 FROM QUIZOPTIONS WHERE Choice_1 = #{Choice1}")
   String selectByChoice1(String Choice1);
@@ -23,4 +23,5 @@ public interface QuizChoicecsMapper {
 
   @Select("SELECT Choice_4 FROM QUIZOPTIONS WHERE Choice_4 = #{Choice4}")
   String selectByChoice4(String Choice4);
+
 }

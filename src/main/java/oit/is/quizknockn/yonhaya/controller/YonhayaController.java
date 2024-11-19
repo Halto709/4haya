@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.quizknockn.yonhaya.model.Room;
@@ -78,6 +80,10 @@ public class YonhayaController {
 
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
+    if (j == 2) {
+      i++;
+      j = 0;
+    }
     // quizIndexを1から10のランダムな値に設定
     quizIndex = room.getN().get(i);
     Quiz quiz = quizMapper.selectById(quizIndex);
@@ -85,10 +91,22 @@ public class YonhayaController {
     model.addAttribute("quiz", quiz);
     model.addAttribute("Choices", quizChoices);
     j++;
-    if (j == 2) {
-      i++;
-      j = 0;
-    }
+
     return "quiz.html";
   }
+
+  @PostMapping("judge")
+  public String judge_quiz(@RequestParam String choice, ModelMap model) {
+    String result;
+    String answer = quizChoicecsMapper.selectById(quizIndex);
+    if (choice.equals(answer)) {
+      result = "正解";
+    } else {
+      result = "不正解";
+    }
+
+    model.addAttribute("result", result);
+    return "quiz.html";
+  }
+
 }
