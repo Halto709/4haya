@@ -48,6 +48,7 @@ public class YonhayaController {
   private int i = 0;
   private int j = 0;
   private int quizIndex = 1;
+  private final int Max_Index = 10;
 
   @GetMapping("")
   public String sample21(Principal prin, ModelMap model) {
@@ -80,6 +81,9 @@ public class YonhayaController {
 
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
+    if (Max_Index == i) {
+      return "quiz.html";
+    }
     if (j == 2) {
       i++;
       j = 0;
