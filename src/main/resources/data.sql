@@ -27,23 +27,23 @@ INSERT INTO quizzes (question,isActive) VALUES ('ガリガリ君の当たりの�
 
 
 
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('讃岐うどん、博多うどん、きしめん','伊勢うどん、稲庭うどん、讃岐うどん','五島うどん、稲庭うどん、月見うどん','水沢うどん、伊勢うどん、博多うどん','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('桜','梅','菊','百合','1');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('新宿駅','東京駅','渋谷駅','大阪駅','1');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('奈良時代','平安時代','飛鳥時代','鎌倉時代','3');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('デジタルリテラシー','グローバルスタディーズ','コミュニケーションスキル','健康管理学','1');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('2017年','2018年','2019年','2020年','3');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('銀幕の映画','縁日スタイルのイベント','レトロゲーム','盆踊り大会','3');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('長野県と新潟県','山梨県と静岡県','静岡県と愛知県','山梨県と岐阜県','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('飛鳥時代','奈良時代','平安時代','鎌倉時代','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('東京都','石川県','京都府','広島県','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('顔の横','頭頂部','お尻','足','4');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('花のラン','オランダ','ランダム','ランキング','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('クリームシチュー','ハヤシライス','カレー','ハッシュドビーフ','3');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('日本','アメリカ','イタリア','フランス','4');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('パチンコ','麻雀','ポーカー','将棋','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('104','118','177','189','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('アカ','ミドリ','ムラサキ','クロ','3');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('10円玉2枚と100円玉1枚','10円玉5枚と100円玉4枚','0円玉10枚と100円玉8枚','枚数制限は無い','2');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('牛乳','人間のオナラ','かつおぶし','ハッカ','4');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1%','2%','3%','4%','3');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('讃岐うどん、博多うどん、きしめん','伊勢うどん、稲庭うどん、讃岐うどん','五島うどん、稲庭うどん、月見うどん','水沢うどん、伊勢うどん、博多うどん','伊勢うどん、稲庭うどん、讃岐うどん');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('桜','梅','菊','百合','桜');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('新宿駅','東京駅','渋谷駅','大阪駅','新宿駅');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('奈良時代','平安時代','飛鳥時代','鎌倉時代','飛鳥時代');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('デジタルリテラシー','グローバルスタディーズ','コミュニケーションスキル','健康管理学','デジタルリテラシー');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('2017年','2018年','2019年','2020年','2019年');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('銀幕の映画','縁日スタイルのイベント','レトロゲーム','盆踊り大会','レトロゲーム');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('長野県と新潟県','山梨県と静岡県','静岡県と愛知県','山梨県と岐阜県','山梨県と静岡県');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('飛鳥時代','奈良時代','平安時代','鎌倉時代','奈良時代');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('東京都','石川県','京都府','広島県','石川県');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('顔の横','頭頂部','お尻','足','足');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('花のラン','オランダ','ランダム','ランキング','オランダ');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('クリームシチュー','ハヤシライス','カレー','ハッシュドビーフ','カレー');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('日本','アメリカ','イタリア','フランス','フランス');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('パチンコ','麻雀','ポーカー','将棋','麻雀');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('104','118','177','189','118');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('アカ','ミドリ','ムラサキ','クロ','ムラサキ');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('10円玉2枚と100円玉1枚','10円玉5枚と100円玉4枚','0円玉10枚と100円玉8枚','枚数制限は無い','10円玉5枚と100円玉4枚');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('牛乳','人間のオナラ','かつおぶし','ハッカ','ハッカ');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1%','2%','3%','4%','3%');

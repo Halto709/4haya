@@ -23,5 +23,5 @@ CREATE TABLE quizOptions (
     choice_2 VARCHAR NOT NULL,
     choice_3 VARCHAR NOT NULL,
     choice_4 VARCHAR NOT NULL,
-    correct INT NOT NULL
+    correct VARCHAR NOT NULL
 );
