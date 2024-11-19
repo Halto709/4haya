@@ -43,8 +43,9 @@ public class YonhayaController {
   private UserMapper userMapper;
 
   // デモ用のクイズインデックス
+  private int i = 0;
+  private int j = 0;
   private int quizIndex = 1;
-  private int maxquizINdex = 10;
 
   @GetMapping("")
   public String sample21(Principal prin, ModelMap model) {
@@ -78,19 +79,15 @@ public class YonhayaController {
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
     // quizIndexを1から10のランダムな値に設定
-    int flag = 0;
-    while (flag != 1) {
-      quizIndex = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
-      Quiz quiz = quizMapper.selectById(quizIndex);
-      if (quiz.getIsActive()) {
-        QuizChoices quizChoices = quizChoicecsMapper.selectAllById(quizIndex);
-        model.addAttribute("quiz", quiz);
-        model.addAttribute("Choices", quizChoices);
-
-        quiz.setIsActive(false);
-        quizMapper.updateById(quiz);
-      }
-      flag = 1;
+    quizIndex = room.getN().get(i);
+    Quiz quiz = quizMapper.selectById(quizIndex);
+    QuizChoices quizChoices = quizChoicecsMapper.selectAllById(quizIndex);
+    model.addAttribute("quiz", quiz);
+    model.addAttribute("Choices", quizChoices);
+    j++;
+    if (j == 2) {
+      i++;
+      j = 0;
     }
     return "quiz.html";
   }
