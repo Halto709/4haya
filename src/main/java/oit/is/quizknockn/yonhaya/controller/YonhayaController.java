@@ -48,7 +48,7 @@ public class YonhayaController {
   private int i = 0;
   private int j = 0;
   private int quizIndex = 1;
-  private final int Max_Index = 10;
+  private final int Max_Index = 2;
 
   @GetMapping("")
   public String sample21(Principal prin, ModelMap model) {
@@ -81,12 +81,8 @@ public class YonhayaController {
 
   @GetMapping("quiz")
   public String Shift_Quiz(ModelMap model) {
-    if (Max_Index == i) {
-      return "quiz.html";
-    }
-    if (j == 2) {
-      i++;
-      j = 0;
+    if (Max_Index <= i) {
+      return "finish.html";
     }
     // quizIndexを1から10のランダムな値に設定
     quizIndex = room.getN().get(i);
@@ -95,6 +91,10 @@ public class YonhayaController {
     model.addAttribute("quiz", quiz);
     model.addAttribute("Choices", quizChoices);
     j++;
+    if (j == 2) {
+      i++;
+      j = 0;
+    }
 
     return "quiz.html";
   }
