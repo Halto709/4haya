@@ -100,11 +100,12 @@ public class YonhayaController {
   }
 
   @PostMapping("judge")
-  public String judge_quiz(@RequestParam String choice, ModelMap model) {
+  public String judge_quiz(@RequestParam String choice, ModelMap model,Principal prin) {
     String result;
     String answer = quizChoicecsMapper.selectById(quizIndex);
     if (choice.equals(answer)) {
       result = "正解";
+      userMapper.updateByUserpoint(prin.getName());
     } else {
       result = "不正解";
     }
