@@ -1,7 +1,6 @@
 package oit.is.quizknockn.yonhaya.controller;
 
 import java.security.Principal;
-import java.util.concurrent.ThreadLocalRandom;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.quizknockn.yonhaya.model.Room;
-import oit.is.quizknockn.yonhaya.service.AsyncEnterRoom;
+import oit.is.quizknockn.yonhaya.service.AsyncJoinRoom;
 import oit.is.quizknockn.yonhaya.model.Quiz;
 import oit.is.quizknockn.yonhaya.model.QuizMapper;
 import oit.is.quizknockn.yonhaya.model.QuizChoices;
@@ -33,7 +32,7 @@ public class YonhayaController {
   private Room room;
 
   @Autowired
-  private AsyncEnterRoom asyncEnterRoom;
+  private AsyncJoinRoom asyncJoinRoom;
 
   @Autowired
   private QuizMapper quizMapper;
@@ -45,24 +44,24 @@ public class YonhayaController {
   private UserMapper userMapper;
 
   // デモ用のクイズインデックス
-  private int i = 0;
+  private int currentQuestionIndex = 0;
   private int j = 0;
-  private int quizIndex = 1;
-  private final int Max_Index = 2;
+  private int quizID = 1;
+  private final int MAX_QUESTIONS = 2;
 
   @GetMapping("")
-  public String sample21(Principal prin, ModelMap model) {
+  public String showHomePage(Principal prin, ModelMap model) {
     User loginUser = userMapper.selectByUserName(prin.getName());
     model.addAttribute("loginUser", loginUser);
     return "4haya.html";
   }
 
   @GetMapping("di")
-  public String sample38(Principal prin, ModelMap model) {
+  public String joinRoom(Principal prin, ModelMap model) {
     String loginUser = prin.getName();
     if (this.room.addUser(loginUser)) {
       // ユーザがルームに追加される
-      this.asyncEnterRoom.userEnter(this.room.getUsers());
+      this.asyncJoinRoom.userJoin(this.room.getUsers());
       model.addAttribute("room", this.room);
 
       return "joinRoom.html";
@@ -71,28 +70,29 @@ public class YonhayaController {
     return "4haya.html";
   }
 
+  // ルームに誰が入っているか非同期で表示
   @GetMapping("roomInfo")
   public SseEmitter roomInfo() {
     logger.info("pushRoomUsers");
     SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
-    this.asyncEnterRoom.pushRoomUsers(emitter);
+    this.asyncJoinRoom.pushRoomUsers(emitter);
     return emitter;
   }
 
   @GetMapping("quiz")
-  public String Shift_Quiz(ModelMap model) {
-    if (Max_Index <= i) {
+  public String shiftQuiz(ModelMap model) {
+    if (MAX_QUESTIONS <= currentQuestionIndex) {
       return "finish.html";
     }
     // quizIndexを1から10のランダムな値に設定
-    quizIndex = room.getN().get(i);
-    Quiz quiz = quizMapper.selectById(quizIndex);
-    QuizChoices quizChoices = quizChoicecsMapper.selectAllById(quizIndex);
+    quizID = room.getQuizOrder().get(currentQuestionIndex);
+    Quiz quiz = quizMapper.selectById(quizID);
+    QuizChoices quizChoices = quizChoicecsMapper.selectAllById(quizID);
     model.addAttribute("quiz", quiz);
     model.addAttribute("Choices", quizChoices);
     j++;
     if (j == 2) {
-      i++;
+      currentQuestionIndex++;
       j = 0;
     }
 
@@ -100,9 +100,9 @@ public class YonhayaController {
   }
 
   @PostMapping("judge")
-  public String judge_quiz(@RequestParam String choice, ModelMap model,Principal prin) {
+  public String judgeQuiz(@RequestParam String choice, ModelMap model, Principal prin) {
     String result;
-    String answer = quizChoicecsMapper.selectById(quizIndex);
+    String answer = quizChoicecsMapper.selectById(quizID);
     if (choice.equals(answer)) {
       result = "正解";
       userMapper.updateByUserpoint(prin.getName());

@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 @Service
-public class AsyncEnterRoom {
-  private final Logger logger = LoggerFactory.getLogger(AsyncEnterRoom.class);
+public class AsyncJoinRoom {
+  private final Logger logger = LoggerFactory.getLogger(AsyncJoinRoom.class);
 
   private ArrayList<String> joinedUser = new ArrayList<>();
   private boolean userUpdate = false;
 
   @Async
-  public void userEnter(ArrayList<String> name) {
+  public void userJoin(ArrayList<String> name) {
     logger.info("User Enters a Room");
     this.joinedUser = name;
     this.userUpdate = true;
