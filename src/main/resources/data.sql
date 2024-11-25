@@ -24,6 +24,16 @@ INSERT INTO quizzes (question,isActive) VALUES ('お寿司屋さんでは、醤�
 INSERT INTO quizzes (question,isActive) VALUES ('公衆電話に一度に入れることができる硬貨の枚数は何枚でしょうか？','true');
 INSERT INTO quizzes (question,isActive) VALUES ('ムカデが苦手としている匂いはどれでしょうか？','true');
 INSERT INTO quizzes (question,isActive) VALUES ('ガリガリ君の当たりの確率はどれくらい?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('職業にも学業にも職業訓練にもついていないものを総称してNEETと呼ぶがそのNEETに含まれない単語は?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('「紅白歌合戦」の放送開始年は?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('スタジオジブリの映画で最も公開されたのが古い作品は?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('同じ意味の文を繰り返し発言することを「小泉構文」と言いますが、この「小泉」さんのフルネームは次のうちどれ?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('音MADとして有名になり、コンビニエンスストアでも宣伝が行われていた大学は?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('あるキャラクターの死に様が「サタデーナイトフィーバー」のワンシーンに酷似しておりネットミームとなったアニメのタイトルは?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('「たたら製鉄」が古くから行われていたことで有名な日本の地方はどこ？','true');
+INSERT INTO quizzes (question,isActive) VALUES ('東京にある「国会議事堂」の建設が完成したのはいつでしょう?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('日本で「最初の元号」は何だったでしょう?','true');
+INSERT INTO quizzes (question,isActive) VALUES ('日本の新幹線が開業したのは何年でしょうか?','true');
 
 
 
@@ -47,3 +57,13 @@ INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('�
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('10円玉2枚と100円玉1枚','10円玉5枚と100円玉4枚','0円玉10枚と100円玉8枚','枚数制限は無い','10円玉5枚と100円玉4枚');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('牛乳','人間のオナラ','かつおぶし','ハッカ','ハッカ');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1%','2%','3%','4%','3%');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('No','Employment','Education','Traning','No');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1951年','1954年','1956年','1960年','1951年');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('天空の城ラピュタ','紅の豚','もののけ姫','風の谷のナウシカ','風の谷のナウシカ');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('小泉孝太郎','小泉純一郎','小泉進次郎','小泉今日子','小泉進次郎');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('帝京大学','帝京平成大学','慶応義塾大学','中央大学','帝京平成大学');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('機動戦士ガンダム鉄血のオルフェンズ','機動戦士ガンダムOO','機動戦士ガンダムF91','機動戦士ガンダムSEED','機動戦士ガンダム鉄血のオルフェンズ');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('四国地方','北海道地方','山陰地方','東北地方','山陰地方');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1889年','1900年','1936年','1945年','1936年');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('慶応','大化','元和','天平','大化');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1960年','1964年','1970年','1972年','1964年');
