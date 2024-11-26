@@ -10,7 +10,7 @@ public class Room {
   int roomNo = 1;
   private int maxquizINdex = 10;
   ArrayList<String> users = new ArrayList<>();
-  ArrayList<Integer> n = new ArrayList<>();
+  ArrayList<Integer> quizOrder = new ArrayList<>();
 
   public boolean addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
@@ -25,9 +25,9 @@ public class Room {
     if (users.size() == 2) {
       int i = 0;
       while (i < 10) {
-        int tmp = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
-        if (checkNumber(tmp)) {
-          n.add(tmp);
+        int randomQuizID = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
+        if (checkNumber(randomQuizID)) {
+          quizOrder.add(randomQuizID);
           i++;
         }
       }
@@ -35,9 +35,9 @@ public class Room {
     return true;
   }
 
-  public boolean checkNumber(int tmp) {
-    for (int N : n) {
-      if (tmp == N) {
+  public boolean checkNumber(int randomQuizID) {
+    for (int QuizNum : quizOrder) {
+      if (randomQuizID == QuizNum) {
         return false;
       }
     }
@@ -62,12 +62,12 @@ public class Room {
     this.users = users;
   }
 
-  public ArrayList<Integer> getN() {
-    return n;
+  public ArrayList<Integer> getQuizOrder() {
+    return quizOrder;
   }
 
-  public void setN(ArrayList<Integer> n) {
-    this.n = n;
+  public void setQuizOrder(ArrayList<Integer> n) {
+    this.quizOrder = n;
   }
 
 }
