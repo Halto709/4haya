@@ -111,7 +111,7 @@ public class YonhayaController {
     }
 
     model.addAttribute("result", result);
-    return "quiz.html";
+    return "wait.html";
   }
 
 }
