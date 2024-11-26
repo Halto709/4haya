@@ -124,8 +124,15 @@ public class YonhayaController {
 
     asyncWaitRoom.userWait();
 
+    if (MAX_QUESTIONS <= currentQuestionIndex) {
+      model.addAttribute("finish",1);
+    }
+
     model.addAttribute("result", result);
     return "wait.html";
   }
-
+  @GetMapping("finish")
+  public String finish() {
+    return "finish.html";
+  }
 }
