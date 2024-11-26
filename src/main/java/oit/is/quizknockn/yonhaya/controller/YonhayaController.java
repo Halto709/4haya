@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import oit.is.quizknockn.yonhaya.model.Room;
 import oit.is.quizknockn.yonhaya.service.AsyncJoinRoom;
+import oit.is.quizknockn.yonhaya.service.AsyncWaitRoom;
 import oit.is.quizknockn.yonhaya.model.Quiz;
 import oit.is.quizknockn.yonhaya.model.QuizMapper;
 import oit.is.quizknockn.yonhaya.model.QuizChoices;
@@ -33,6 +34,9 @@ public class YonhayaController {
 
   @Autowired
   private AsyncJoinRoom asyncJoinRoom;
+
+  @Autowired
+  private AsyncWaitRoom asyncWaitRoom;
 
   @Autowired
   private QuizMapper quizMapper;
@@ -79,6 +83,14 @@ public class YonhayaController {
     return emitter;
   }
 
+  @GetMapping("waitInfo")
+  public SseEmitter waitInfo() {
+    logger.info("pushWaitRoom");
+    SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
+    this.asyncWaitRoom.pushWaitRoom(emitter);
+    return emitter;
+  }
+
   @GetMapping("quiz")
   public String shiftQuiz(ModelMap model) {
     if (MAX_QUESTIONS <= currentQuestionIndex) {
@@ -109,6 +121,8 @@ public class YonhayaController {
     } else {
       result = "不正解";
     }
+
+    asyncWaitRoom.userWait();
 
     model.addAttribute("result", result);
     return "wait.html";
