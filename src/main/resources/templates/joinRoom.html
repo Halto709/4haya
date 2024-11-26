@@ -22,8 +22,10 @@
           results += result; // 結果を連結
         }
 
-        if(user_list.length == 2 ){
+        if (user_list.length == 2) {
           results += "<a href='/yonhaya/quiz'>クイズ</a>"
+          // クイズ画面に自動遷移
+          window.location.href = '/yonhaya/quiz';
         }
 
         document.getElementById("roomInfo").innerHTML = results;
