@@ -21,5 +21,7 @@
 
 <div th:if="${result}">
   [[${result}]]
-  <a href="/yonhaya/quiz">次のクイズへ</a>
+</div>
+<div th:if="${finish}">
+<a href="/yonhaya/finish">結果発表</a>
 </div>
