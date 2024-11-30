@@ -1,5 +1,7 @@
 package oit.is.quizknockn.yonhaya.model;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -15,4 +17,11 @@ public interface UserMapper {
 
   @Update("UPDATE users SET point = point + 1 WHERE userName = #{userName}")
   void updateByUserpoint(String userName);
+
+  @Select("SELECT * FROM users WHERE isactive = #{isActive}")
+  ArrayList<User> selectByResult(boolean isActive);
+
+  @Update("UPDATE users SET ISACTIVE = true WHERE userName = #{userName}")
+  void updateByUserIsActive(String userName);
+
 }

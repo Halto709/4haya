@@ -1,4 +1,10 @@
 <body>
-  <br>問題が終了しました。</br>
   <a href="/logout">ログアウト</a>
+
+  <div th:if="${UserResult}">
+    <div th:each="userresult,stat:${UserResult}">
+      <p>ユーザ名 :[[${userresult.userName}]]</p>
+      <p>得点 :[[${userresult.point}]]点</p>
+    </div>
+  </div>
 </body>
