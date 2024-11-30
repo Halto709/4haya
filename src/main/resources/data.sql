@@ -35,6 +35,12 @@ INSERT INTO quizzes (question,isActive) VALUES ('東京にある「国会議事�
 INSERT INTO quizzes (question,isActive) VALUES ('日本で「最初の元号」は何だったでしょう?','true');
 INSERT INTO quizzes (question,isActive) VALUES ('日本の新幹線が開業したのは何年でしょうか?','true');
 
+INSERT INTO quizzes (question,isActive) VALUES ('座右の銘は英語で何というでしょう？','true');
+INSERT INTO quizzes (question,isActive) VALUES ('コアラの一日の平均睡眠時間は？','true');
+INSERT INTO quizzes (question,isActive) VALUES ('飛行機の中で食べれるように作られた野菜はどれでしょう？','true');
+INSERT INTO quizzes (question,isActive) VALUES ('「Google」のロゴの二つの「o」に使用されている色の組み合わせはなに？','true');
+INSERT INTO quizzes (question,isActive) VALUES ('桜肉といえばなんの肉でしょう?','true');
+
 
 
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('讃岐うどん、博多うどん、きしめん','伊勢うどん、稲庭うどん、讃岐うどん','五島うどん、稲庭うどん、月見うどん','水沢うどん、伊勢うどん、博多うどん','伊勢うどん、稲庭うどん、讃岐うどん');
@@ -67,3 +73,9 @@ INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('�
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1889年','1900年','1936年','1945年','1936年');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('慶応','大化','元和','天平','大化');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('1960年','1964年','1970年','1972年','1964年');
+
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('アンセム','スローガン','ブーム','モットー','モットー');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('8時間','12時間','16時間','20時間','20時間');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('ミニトマト','パプリカ','アボカド','ズッキーニ','ミニトマト');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('青色と黄色','青色と緑色','赤色と黄色','赤色と緑色','赤色と黄色');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('猪','鹿','馬','鶏','馬');

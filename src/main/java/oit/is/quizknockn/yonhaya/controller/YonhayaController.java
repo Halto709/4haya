@@ -102,6 +102,7 @@ public class YonhayaController {
     QuizChoices quizChoices = quizChoicecsMapper.selectAllById(quizID);
     model.addAttribute("quiz", quiz);
     model.addAttribute("Choices", quizChoices);
+    model.addAttribute("currentQuestionIndex", currentQuestionIndex + 1);
     j++;
     if (j == 2) {
       currentQuestionIndex++;
@@ -125,12 +126,13 @@ public class YonhayaController {
     asyncWaitRoom.userWait();
 
     if (MAX_QUESTIONS <= currentQuestionIndex) {
-      model.addAttribute("finish",1);
+      model.addAttribute("finish", 1);
     }
 
     model.addAttribute("result", result);
     return "wait.html";
   }
+
   @GetMapping("finish")
   public String finish() {
     return "finish.html";
