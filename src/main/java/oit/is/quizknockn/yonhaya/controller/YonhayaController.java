@@ -1,6 +1,7 @@
 package oit.is.quizknockn.yonhaya.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,7 +68,8 @@ public class YonhayaController {
       // ユーザがルームに追加される
       this.asyncJoinRoom.userJoin(this.room.getUsers());
       model.addAttribute("room", this.room);
-
+      // ユーザがルームに追加されたら、isActiveをtrueにする。
+      userMapper.updateByUserIsActive(loginUser);
       return "joinRoom.html";
     }
     model.addAttribute("error", loginUser);
@@ -134,7 +136,9 @@ public class YonhayaController {
   }
 
   @GetMapping("finish")
-  public String finish() {
+  public String finish(ModelMap model) {
+    ArrayList<User> UserResult = userMapper.selectByResult(true);
+    model.addAttribute("UserResult", UserResult);
     return "finish.html";
   }
 }
