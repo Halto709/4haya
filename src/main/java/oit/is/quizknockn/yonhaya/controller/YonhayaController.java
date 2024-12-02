@@ -53,6 +53,7 @@ public class YonhayaController {
   private int j = 0;
   private int quizID = 1;
   private final int MAX_QUESTIONS = 2;
+  private int scoreWeight = 4;
 
   @GetMapping("")
   public String showHomePage(Principal prin, ModelMap model) {
@@ -110,6 +111,7 @@ public class YonhayaController {
       currentQuestionIndex++;
       j = 0;
     }
+    scoreWeight = 4;
 
     return "quiz.html";
   }
@@ -120,7 +122,7 @@ public class YonhayaController {
     String answer = quizChoicecsMapper.selectById(quizID);
     if (choice.equals(answer)) {
       result = "正解";
-      userMapper.updateByUserpoint(prin.getName());
+      userMapper.updatePointByUserName(prin.getName(), scoreWeight--);
     } else {
       result = "不正解";
     }
