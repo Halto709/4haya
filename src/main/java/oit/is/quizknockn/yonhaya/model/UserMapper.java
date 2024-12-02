@@ -24,4 +24,7 @@ public interface UserMapper {
   @Update("UPDATE users SET ISACTIVE = true WHERE userName = #{userName}")
   void updateByUserIsActive(String userName);
 
+  @Update("UPDATE users SET point = point + #{point} WHERE userName = #{userName}")
+  void updatePointByUserName(String userName, int point);
+
 }
