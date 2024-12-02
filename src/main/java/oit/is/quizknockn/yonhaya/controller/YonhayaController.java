@@ -138,7 +138,21 @@ public class YonhayaController {
   @GetMapping("finish")
   public String finish(ModelMap model) {
     ArrayList<User> UserResult = userMapper.selectByResult(true);
+    // 挿入ソートを使用してUserResultをpointで昇順に並び替える
+    for (int i = 1; i < UserResult.size(); i++) {
+      User key = UserResult.get(i);
+      int j = i - 1;
+
+      // keyのpointより大きい値を右にシフトする
+      while (j >= 0 && UserResult.get(j).getPoint() < key.getPoint()) {
+        UserResult.set(j + 1, UserResult.get(j));
+        j--;
+      }
+      UserResult.set(j + 1, key);
+    }
+
     model.addAttribute("UserResult", UserResult);
     return "finish.html";
   }
+
 }
