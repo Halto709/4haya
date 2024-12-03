@@ -162,6 +162,11 @@ public class YonhayaController {
     String loginUser = prin.getName();
     userMapper.updateByUserIsActive(loginUser, false);
     userMapper.setPointZero();
+    room.clearRoomInfo();
+    currentQuestionIndex = 0;
+    quizID = 1;
+    asyncJoinRoom.clearuserJoin();
+    asyncWaitRoom.clearWait();
     return "4haya.html";
   }
 

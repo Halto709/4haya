@@ -44,6 +44,11 @@ public class Room {
     return true;
   }
 
+  public void clearRoomInfo() {
+    users.clear();
+    quizOrder.clear();
+  }
+
   // 以降はフィールドのgetter/setter
   // これらがないとThymeleafで値を取得できない
   public int getRoomNo() {

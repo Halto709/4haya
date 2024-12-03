@@ -21,6 +21,11 @@ public class AsyncWaitRoom {
     this.userUpdate = true;
   }
 
+  public void clearWait() {
+    waitingUser = 0;
+    userUpdate = false;
+  }
+
   @Async
   public void pushWaitRoom(SseEmitter emitter) {
     logger.info("pushWaitRoom start");
