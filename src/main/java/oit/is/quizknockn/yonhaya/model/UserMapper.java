@@ -21,10 +21,13 @@ public interface UserMapper {
   @Select("SELECT * FROM users WHERE isactive = #{isActive}")
   ArrayList<User> selectByResult(boolean isActive);
 
-  @Update("UPDATE users SET ISACTIVE = true WHERE userName = #{userName}")
-  void updateByUserIsActive(String userName);
+  @Update("UPDATE users SET ISACTIVE = #{isActive} WHERE userName = #{userName}")
+  void updateByUserIsActive(String userName,boolean isActive);
 
   @Update("UPDATE users SET point = point + #{point} WHERE userName = #{userName}")
   void updatePointByUserName(String userName, int point);
+
+  @Update("UPDATE users SET point = 0 ")
+  void setPointZero();
 
 }

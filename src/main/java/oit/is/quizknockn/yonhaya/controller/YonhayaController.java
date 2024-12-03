@@ -70,7 +70,7 @@ public class YonhayaController {
       this.asyncJoinRoom.userJoin(this.room.getUsers());
       model.addAttribute("room", this.room);
       // ユーザがルームに追加されたら、isActiveをtrueにする。
-      userMapper.updateByUserIsActive(loginUser);
+      userMapper.updateByUserIsActive(loginUser, true);
       return "joinRoom.html";
     }
     model.addAttribute("error", loginUser);
@@ -155,6 +155,14 @@ public class YonhayaController {
 
     model.addAttribute("UserResult", UserResult);
     return "finish.html";
+  }
+
+  @GetMapping("exit")
+  public String exit(Principal prin) {
+    String loginUser = prin.getName();
+    userMapper.updateByUserIsActive(loginUser, false);
+    userMapper.setPointZero();
+    return "4haya.html";
   }
 
 }
