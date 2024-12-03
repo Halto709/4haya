@@ -7,15 +7,21 @@
       const sse = new EventSource('/yonhaya/waitInfo');
       sse.onmessage = function (event) {
         console.log("sse.onmessage");
-        var user_number = JSON.parse(event.data);
+        var userWaitRoom = JSON.parse(event.data);
+        var user_number = userWaitRoom.waitingUser;
+        var finish_flag = userWaitRoom.finishFlag;
         var results = "<a>他の人の解答を待ってます！</a>";
 
+        if (finish_flag) {
+          results += "<a href='/yonhaya/finish'>結果発表</a>"
+        }
         if (user_number == 2) {
           // 数秒待機してからクイズ画面に遷移
           setTimeout(function () {
             window.location.href = '/yonhaya/quiz';
           }, 2000); // 2秒
         }
+
 
         document.getElementById("waitInfo").innerHTML = results;
 
@@ -28,6 +34,3 @@
   [[${result}]]
 </div>
 <div id="waitInfo"></div>
-<div th:if="${finish}">
-  <a href="/yonhaya/finish">結果発表</a>
-</div>

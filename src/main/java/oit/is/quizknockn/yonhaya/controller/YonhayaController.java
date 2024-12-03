@@ -52,7 +52,9 @@ public class YonhayaController {
   private int currentQuestionIndex = 0;
   private int j = 0;
   private int quizID = 1;
+  private int finishNumber = 0;
   private final int MAX_QUESTIONS = 2;
+  private final int MAX_USER_NUMBER = 2;
   private int scoreWeight = 4;
 
   @GetMapping("")
@@ -130,7 +132,10 @@ public class YonhayaController {
     asyncWaitRoom.userWait();
 
     if (MAX_QUESTIONS <= currentQuestionIndex) {
-      model.addAttribute("finish", 1);
+      finishNumber++;
+    }
+    if (finishNumber == MAX_USER_NUMBER) {
+      asyncWaitRoom.quizFinish();
     }
 
     model.addAttribute("result", result);
