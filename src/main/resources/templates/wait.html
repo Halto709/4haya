@@ -8,11 +8,16 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage");
         var user_number = JSON.parse(event.data);
+        var results = "<a>他の人の解答を待ってます！</a>";
 
         if (user_number == 2) {
-          // クイズ画面に自動遷移
-          window.location.href = '/yonhaya/quiz';
+          // 数秒待機してからクイズ画面に遷移
+          setTimeout(function () {
+            window.location.href = '/yonhaya/quiz';
+          }, 2000); // 2秒
         }
+
+        document.getElementById("waitInfo").innerHTML = results;
 
       }
     }
@@ -22,7 +27,7 @@
 <div th:if="${result}">
   [[${result}]]
 </div>
+<div id="waitInfo"></div>
 <div th:if="${finish}">
   <a href="/yonhaya/finish">結果発表</a>
-</div>
 </div>
