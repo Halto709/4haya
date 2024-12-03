@@ -35,7 +35,7 @@ public class AsyncWaitRoom {
 
         // 新しいユーザが追加されていれば，その情報を送信
         logger.info("send(RoomUsers)");
-        TimeUnit.SECONDS.sleep(1);// 1秒STOP
+        TimeUnit.MILLISECONDS.sleep(100);// 0.1秒STOP
         // JSONオブジェクトがクライアントに送付される
         emitter.send(waitingUser);
         userUpdate = false;
