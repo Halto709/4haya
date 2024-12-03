@@ -22,6 +22,10 @@ public class AsyncJoinRoom {
     this.userUpdate = true;
   }
 
+  public void clearuserJoin() {
+    joinedUser.clear();
+  }
+
   @Async
   public void pushRoomUsers(SseEmitter emitter) {
     logger.info("pushRoomUsers start");
