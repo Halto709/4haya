@@ -22,12 +22,15 @@ public interface UserMapper {
   ArrayList<User> selectByResult(boolean isActive);
 
   @Update("UPDATE users SET ISACTIVE = #{isActive} WHERE userName = #{userName}")
-  void updateByUserIsActive(String userName,boolean isActive);
+  void updateByUserIsActive(String userName, boolean isActive);
 
   @Update("UPDATE users SET point = point + #{point} WHERE userName = #{userName}")
   void updatePointByUserName(String userName, int point);
 
   @Update("UPDATE users SET point = 0 ")
   void setPointZero();
+
+  @Update("UPDATE users SET rank = 0 ")
+  void setRankZero();
 
 }

@@ -1,8 +1,8 @@
-INSERT INTO users (userName,point,isActive) VALUES ('user1','0','false');
-INSERT INTO users (userName,point,isActive) VALUES ('user2','0','false');
-INSERT INTO users (userName,point,isActive) VALUES ('user3','0','false');
-INSERT INTO users (userName,point,isActive) VALUES ('user4','0','false');
-INSERT INTO users (userName,point,isActive) VALUES ('admin',NULL,'false');
+INSERT INTO users (userName,point,isActive,rank) VALUES ('user1','0','false','0');
+INSERT INTO users (userName,point,isActive,rank) VALUES ('user2','0','false','0');
+INSERT INTO users (userName,point,isActive,rank) VALUES ('user3','0','false','0');
+INSERT INTO users (userName,point,isActive,rank) VALUES ('user4','0','false','0');
+INSERT INTO users (userName,point,isActive,rank) VALUES ('admin',NULL,'false',NULL);
 
 INSERT INTO quizzes (question,isActive) VALUES ('日本の和食文化の一環として知られる「三大うどん」に含まれるうどんはどれ？','true');
 INSERT INTO quizzes (question,isActive) VALUES ('日本の「国花」とされるのはどの花？','true');

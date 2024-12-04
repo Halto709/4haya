@@ -8,7 +8,8 @@ CREATE TABLE users (
     id IDENTITY,
     userName VARCHAR NOT NULL,
     point INT,
-    isActive BOOLEAN NOT NULL
+    isActive BOOLEAN NOT NULL,
+    rank INT
 );
 
 CREATE TABLE quizzes (
