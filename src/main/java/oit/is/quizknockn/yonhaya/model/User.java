@@ -5,6 +5,7 @@ public class User {
   String userName;
   int point;
   boolean isActive;
+  int rank;
 
   public int getId() {
     return id;
@@ -37,4 +38,13 @@ public class User {
   public void setActive(boolean isActive) {
     this.isActive = isActive;
   }
+
+  public int getRank() {
+    return rank;
+  }
+
+  public void setRank(int rank) {
+    this.rank = rank;
+  }
+
 }

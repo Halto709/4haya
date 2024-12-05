@@ -145,17 +145,33 @@ public class YonhayaController {
   @GetMapping("finish")
   public String finish(ModelMap model) {
     ArrayList<User> UserResult = userMapper.selectByResult(true);
-    // 挿入ソートを使用してUserResultをpointで昇順に並び替える
+
+    // 挿入ソートを使用して UserResult を point で降順に並び替える
     for (int i = 1; i < UserResult.size(); i++) {
       User key = UserResult.get(i);
       int j = i - 1;
 
-      // keyのpointより大きい値を右にシフトする
+      // key の point より大きい値を右にシフトする
       while (j >= 0 && UserResult.get(j).getPoint() < key.getPoint()) {
         UserResult.set(j + 1, UserResult.get(j));
         j--;
       }
       UserResult.set(j + 1, key);
+    }
+
+    // 並び替え後に rankNumber を設定する
+    int rankNumber = 1;
+    for (int i = 0; i < UserResult.size(); i++) {
+      // 前のユーザーとポイントが同じ場合、同じランクを設定
+
+      if (i > 0 && UserResult.get(i).getPoint() == UserResult.get(i -
+          1).getPoint()) {
+        UserResult.get(i).setRank(UserResult.get(i - 1).getRank());
+      } else {
+        UserResult.get(i).setRank(rankNumber);
+      }
+      rankNumber++;
+
     }
 
     model.addAttribute("UserResult", UserResult);
@@ -167,6 +183,7 @@ public class YonhayaController {
     String loginUser = prin.getName();
     userMapper.updateByUserIsActive(loginUser, false);
     userMapper.setPointZero();
+    userMapper.setRankZero();
     room.clearRoomInfo();
     currentQuestionIndex = 0;
     quizID = 1;
