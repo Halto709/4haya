@@ -15,6 +15,4 @@ public interface QuizMapper {
   @Select("SELECT * FROM quizzes WHERE id = #{id}")
   Quiz selectById(int id);
 
-  @Update("UPDATE quizzes SET question = #{question}, isActive = #{isActive} WHERE id = #{id}")
-  void updateById(Quiz quiz);
 }
