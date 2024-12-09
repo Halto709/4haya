@@ -40,7 +40,6 @@ INSERT INTO quizzes (question) VALUES ('飛行機の中で食べれるように�
 INSERT INTO quizzes (question) VALUES ('「Google」のロゴの二つの「o」に使用されている色の組み合わせはなに？');
 INSERT INTO quizzes (question) VALUES ('桜肉といえばなんの肉でしょう?');
 INSERT INTO quizzes (question) VALUES ('最高視聴率を誇る国内アニメ番組は？');
-INSERT INTO quizzes (question) VALUES ('平成年間のアルバム・シングル総売上累積売上8262.4万枚で1位となったアーティストは何？');
 INSERT INTO quizzes (question) VALUES ('卒業式ソングの定番でもあるレミオロメンの『3月9日』。元々は何のために作られた曲？');
 INSERT INTO quizzes (question) VALUES ('映画『君の名は。』の音楽を担当したバンドは何？');
 INSERT INTO quizzes (question) VALUES ('次のうち、メンバー全員が幼稚園からの幼なじみ、バンド結成は高校時代というグループはどれ？');
@@ -94,7 +93,6 @@ INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('�
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('青色と黄色','青色と緑色','赤色と黄色','赤色と緑色','赤色と黄色');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('猪','鹿','馬','鶏','馬');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('サザエさん','ドラえもん','ちびまる子ちゃん','ワンピース','ちびまる子ちゃん');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('TOKIO','嵐','サザンオールスターズ','B'z','B'z');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('結婚祝い','命日','七五三','快気祝い','結婚祝い');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('BUMP OF CHICKEN','RADWIMPS','King Gnu','KANA-BOON','RADWIMPS');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('レミオロメン','BUMP OF CHICKEN','SEKAI NO OWARI','ゆず','SEKAI NO OWARI');
@@ -104,7 +102,7 @@ INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('�
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('YOASOBI','優里','ヨルシカ','ずっと真夜中でいいのに。','YOASOBI');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('崖の上のポニョ','風立ちぬ','千と千尋の神隠し','ハウルの動く城','千と千尋の神隠し');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('のび太の宇宙開拓史','のび太の恐竜','のび太の大魔境','のび太の海底鬼岩城','のび太の恐竜');
-INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('セカイ','ヒト','リアル','ニッポン','');
+INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('セカイ','ヒト','リアル','ニッポン','ニッポン');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('ONE PIECE FILM RED','SPY×FAMILY','リコリス・リコイル','機動戦士ガンダム 水星の魔女','リコリス・リコイル');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('リコリス・リコイル','機動戦士ガンダム 水星の魔女','ONE PIECE FILM RED','SPY×FAMILY','ONE PIECE FILM RED');
 INSERT INTO quizOptions (choice_1,choice_2,choice_3,choice_4,correct) VALUES ('新英雄大戦（ネオ・エゴイスト・リーグ）','奪敵決戦（ライバルリー・バトル）','総当たりグループリーグマッチ','適性試験（トライアウト）','適性試験（トライアウト）');
