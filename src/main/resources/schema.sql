@@ -26,3 +26,10 @@ CREATE TABLE quizOptions (
     choice_4 VARCHAR NOT NULL,
     correct VARCHAR NOT NULL
 );
+
+CREATE TABLE matchResult (
+    id INT,
+    userName VARCHAR NOT NULL,
+    point INT,
+    rank INT
+);
