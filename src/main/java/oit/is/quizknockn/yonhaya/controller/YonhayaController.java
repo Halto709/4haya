@@ -203,6 +203,12 @@ public class YonhayaController {
   @GetMapping("exit")
   public String exit(Principal prin) {
     String loginUser = prin.getName();
+    resetGame(loginUser);
+
+    return "4haya.html";
+  }
+
+  private void resetGame(String loginUser) {
     userMapper.updateByUserIsActive(loginUser, false);
     userMapper.setPointZero();
     userMapper.setRankZero();
@@ -211,7 +217,8 @@ public class YonhayaController {
     quizID = 1;
     asyncJoinRoom.clearuserJoin();
     asyncWaitRoom.clearWait();
-    return "4haya.html";
+    finishNumber = 0;
+
   }
 
 }
