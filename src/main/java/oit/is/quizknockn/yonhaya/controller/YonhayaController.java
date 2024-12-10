@@ -127,6 +127,8 @@ public class YonhayaController {
   public String judgeQuiz(@RequestParam String choice, ModelMap model, Principal prin) {
     String result;
     String answer = quizChoicecsMapper.selectById(quizID);
+    ArrayList<User> UserResult = userMapper.selectByResult(true);
+
     if (choice.equals(answer)) {
       result = "正解";
       userMapper.updatePointByUserName(prin.getName(), scoreWeight--);
@@ -134,6 +136,21 @@ public class YonhayaController {
       result = "不正解";
     }
 
+    int rankNumber = 1;
+    for (int i = 0; i < UserResult.size(); i++) {
+      // 前のユーザーとポイントが同じ場合、同じランクを設定
+
+      if (i > 0 && UserResult.get(i).getPoint() == UserResult.get(i -
+          1).getPoint()) {
+        UserResult.get(i).setRank(UserResult.get(i - 1).getRank());
+      } else {
+        UserResult.get(i).setRank(rankNumber);
+      }
+      rankNumber++;
+
+    }
+
+    asyncWaitRoom.userRank(UserResult);
     asyncWaitRoom.userWait();
 
     if (MAX_QUESTIONS <= currentQuestionIndex) {
