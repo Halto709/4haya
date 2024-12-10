@@ -1,11 +1,17 @@
 package oit.is.quizknockn.yonhaya.model;
 
+import java.util.ArrayList;
+
+import oit.is.quizknockn.yonhaya.model.User;
+import oit.is.quizknockn.yonhaya.model.UserMapper;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserWaitRoom {
   private int waitingUser = 0;
   private boolean finishFlag = false;
+  private ArrayList<User> userResult = new ArrayList<>();
 
   public void clear() {
     waitingUser = 0;
@@ -26,6 +32,14 @@ public class UserWaitRoom {
 
   public boolean isFinishFlag() {
     return finishFlag;
+  }
+
+  public ArrayList<User> getUserResult() {
+    return userResult;
+  }
+
+  public void setUserResult(ArrayList<User> userResult) {
+    userResult = userResult;
   }
 
 }

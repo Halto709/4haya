@@ -10,7 +10,13 @@
         var userWaitRoom = JSON.parse(event.data);
         var user_number = userWaitRoom.waitingUser;
         var finish_flag = userWaitRoom.finishFlag;
+        var user_result = userWaitRoom.userResult;
         var results = "<a>他の人の解答を待ってます！</a>";
+        var userRank;
+
+        for (var i = 0; i < user_result.length; i++) {
+          userRank += "<p>" + user_result[i].rank + "位</p><p>ユーザ名 : " + user_result[i].userName + "</p><p>得点 : " + user_result[i].point + "点</p>";
+        }
 
         if (finish_flag) {
           results += "<a href='/yonhaya/finish'>結果発表</a>"
@@ -24,6 +30,7 @@
 
 
         document.getElementById("waitInfo").innerHTML = results;
+        document.getElementById("rank").innerHTML = userRank;
 
       }
     }
@@ -33,4 +40,10 @@
 <div th:if="${result}">
   [[${result}]]
 </div>
-<div id="waitInfo"></div>
+
+<a>現在のランキング</a>
+<div id="rank">
+</div>
+
+<div id="waitInfo">
+</div>

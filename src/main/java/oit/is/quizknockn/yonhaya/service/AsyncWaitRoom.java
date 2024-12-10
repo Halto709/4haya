@@ -1,5 +1,6 @@
 package oit.is.quizknockn.yonhaya.service;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,9 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import oit.is.quizknockn.yonhaya.model.UserWaitRoom;
+
+import oit.is.quizknockn.yonhaya.model.User;
+import oit.is.quizknockn.yonhaya.model.UserMapper;
 
 @Service
 public class AsyncWaitRoom {
@@ -25,6 +29,11 @@ public class AsyncWaitRoom {
   public void userWait() {
     logger.info("User Enters a Room");
     userWaitRoom.setWaitingUser(userWaitRoom.getWaitingUser() + 1);
+    this.userUpdate = true;
+  }
+
+  public void userRank(ArrayList<User> UserResult) {
+    userWaitRoom.setUserResult(UserResult);
     this.userUpdate = true;
   }
 
