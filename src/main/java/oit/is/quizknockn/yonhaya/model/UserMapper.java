@@ -33,4 +33,7 @@ public interface UserMapper {
   @Update("UPDATE users SET rank = 0 ")
   void setRankZero();
 
+  @Update("UPDATE users SET rank = #{rank} WHERE userName = #{userName}")
+  void updateRank(String userName, int rank);
+
 }
