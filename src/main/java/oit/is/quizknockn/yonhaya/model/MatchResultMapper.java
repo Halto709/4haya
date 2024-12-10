@@ -9,8 +9,8 @@ import org.apache.ibatis.annotations.Select;
 
 @Mapper
 public interface MatchResultMapper {
-  @Insert("Insert into MatchResult (roomNo,username,point,rank) VALUES(#{roomNo},#{userName},#{point},#{rank});")
-  void insertMatchResult(int roomNo, String username, int point, int rank);
+  @Insert("Insert into MatchResult (roomNo,userName,point,rank) VALUES(#{roomno},#{username},#{point},#{rank});")
+  void insertMatchResult(int roomno, String username, int point, int rank);
 
   @Select("Select * from MatchResult where roomNo = #{roomNo} AND userName = #{userName}")
   MatchResult selectMatchResult(int roomNo, String username);

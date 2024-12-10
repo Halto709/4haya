@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import oit.is.quizknockn.yonhaya.model.Room;
 import oit.is.quizknockn.yonhaya.service.AsyncJoinRoom;
 import oit.is.quizknockn.yonhaya.service.AsyncWaitRoom;
+import oit.is.quizknockn.yonhaya.model.MatchResult;
+import oit.is.quizknockn.yonhaya.model.MatchResultMapper;
 import oit.is.quizknockn.yonhaya.model.Quiz;
 import oit.is.quizknockn.yonhaya.model.QuizMapper;
 import oit.is.quizknockn.yonhaya.model.QuizChoices;
@@ -47,6 +49,9 @@ public class YonhayaController {
 
   @Autowired
   private UserMapper userMapper;
+
+  @Autowired
+  private MatchResultMapper matchResultMapper;
 
   // デモ用のクイズインデックス
   private int currentQuestionIndex = 0;
@@ -165,7 +170,7 @@ public class YonhayaController {
   }
 
   @GetMapping("finish")
-  public String finish(ModelMap model) {
+  public String finish(ModelMap model, Principal prin) {
     ArrayList<User> UserResult = userMapper.selectByResult(true);
 
     // 挿入ソートを使用して UserResult を point で降順に並び替える
@@ -189,12 +194,18 @@ public class YonhayaController {
       if (i > 0 && UserResult.get(i).getPoint() == UserResult.get(i -
           1).getPoint()) {
         UserResult.get(i).setRank(UserResult.get(i - 1).getRank());
+        userMapper.updateRank(UserResult.get(i).getUserName(), UserResult.get(i - 1).getRank());
       } else {
         UserResult.get(i).setRank(rankNumber);
+        userMapper.updateRank(UserResult.get(i).getUserName(), rankNumber);
       }
       rankNumber++;
-
     }
+
+    User user_result = userMapper.selectByUserName(prin.getName());
+    matchResultMapper.insertMatchResult(room.getRoomNo(), prin.getName(),
+        user_result.getPoint(),
+        user_result.getRank());
 
     model.addAttribute("UserResult", UserResult);
     return "finish.html";
