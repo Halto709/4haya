@@ -27,8 +27,9 @@ CREATE TABLE quizOptions (
 );
 
 CREATE TABLE matchResult (
-    id INT,
+    roomNo INT ,
     userName VARCHAR NOT NULL,
     point INT,
-    rank INT
+    rank INT,
+    PRIMARY KEY(roomNo,userName)
 );

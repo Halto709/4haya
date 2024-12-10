@@ -47,6 +47,7 @@ public class Room {
   public void clearRoomInfo() {
     users.clear();
     quizOrder.clear();
+    roomNo++;
   }
 
   // 以降はフィールドのgetter/setter
