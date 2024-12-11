@@ -4,6 +4,7 @@
   <script>
     window.onload = function () {
 
+
       const sse = new EventSource('/yonhaya/waitInfo');
       sse.onmessage = function (event) {
         console.log("sse.onmessage");
@@ -12,38 +13,100 @@
         var finish_flag = userWaitRoom.finishFlag;
         var user_result = userWaitRoom.userResult;
         var results = "<a>他の人の解答を待ってます！</a>";
-        var userRank;
-
-        for (var i = 0; i < user_result.length; i++) {
-          userRank += "<p>" + user_result[i].rank + "位</p><p>ユーザ名 : " + user_result[i].userName + "</p><p>得点 : " + user_result[i].point + "点</p>";
-        }
+        var userRank = "";
 
         if (finish_flag) {
-          results += "<a href='/yonhaya/finish'>結果発表</a>"
+          results += "<a href='/yonhaya/finish'>結果発表</a>";
         }
         if (user_number == 2) {
-          // 数秒待機してからクイズ画面に遷移
+          for (var i = 1; i <= user_result.length; i++) {
+            userRank += `<p>${user_result[i - 1].rank}位</p><p>ユーザ名 : ${user_result[i - 1].userName}</p><p>${user_result[i - 1].point}点</p>`;
+          }
           setTimeout(function () {
             window.location.href = '/yonhaya/quiz';
           }, 2000); // 2秒
         }
 
-
-        document.getElementById("waitInfo").innerHTML = results;
         document.getElementById("rank").innerHTML = userRank;
-
+        document.getElementById("waitInfo").innerHTML = results;
       }
     }
   </script>
 </head>
 
-<div th:if="${result}">
-  [[${result}]]
-</div>
+<body>
+  <div th:if="${result}">
+    [[${result}]]
+  </div>
 
-<a>現在のランキング</a>
-<div id="rank">
-</div>
+  <div id="waitInfo">
+  </div>
 
-<div id="waitInfo">
-</div>
+  <div id="rank">
+    <a>現在のランキング</a>
+  </div>
+</body>
+
+<!--
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>JSON Display Example</title>
+  <script>
+    window.onload = function () {
+      // サンプルのJSONデータ（サーバーから送られると想定）
+      /*const jsonResponse = `{
+        "waitingUser": 2,
+        "finishFlag": false,
+        "userResults": [
+          {"rank": 1, "userName": "太郎", "point": 100},
+          {"rank": 2, "userName": "花子", "point": 80}
+        ]
+      }`;
+      */
+      const sse = new EventSource('/yonhaya/waitInfo');
+      sse.onmessage = function (event) {
+        console.log("sse.onmessage");
+
+        // JSONをパース（解析）
+        const data = JSON.parse(event.data);
+
+        // HTMLに表示する準備
+        let htmlContent = `<p>待機中のユーザー数: ${data.waitingUser}</p>`;
+        if (data.finishFlag) {
+          htmlContent += `<p>ゲームが終了しました！</p>`;
+        } else {
+          htmlContent += `<p>ゲームがまだ進行中です。</p>`;
+        }
+
+        htmlContent += `<h3>ユーザーランキング:</h3>`;
+        htmlContent += `<table border="1"><tr><th>順位</th><th>ユーザ名</th><th>得点</th></tr>`;
+
+
+        for (var i = 1; i < userResults.length; i++) {
+          htmlContent += `<tr>
+          <td>${data.userResults.rank}</td>
+          <td>${data.userResults.userName}</td>
+          <td>${data.userResults.point}点</td>
+        </tr>`;
+        }
+
+        htmlContent += `</table>`;
+
+        // HTML要素に挿入
+        document.getElementById("content").innerHTML = htmlContent;
+      };
+    }
+  </script>
+</head>
+
+<body>
+  <div id="content">
+
+  </div>
+</body>
+
+</html>
+-->

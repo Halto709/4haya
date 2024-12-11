@@ -25,6 +25,7 @@ import oit.is.quizknockn.yonhaya.model.QuizChoices;
 import oit.is.quizknockn.yonhaya.model.QuizChoicecsMapper;
 import oit.is.quizknockn.yonhaya.model.User;
 import oit.is.quizknockn.yonhaya.model.UserMapper;
+import oit.is.quizknockn.yonhaya.model.UserWaitRoom;
 
 @Controller
 @RequestMapping("/yonhaya")
@@ -145,6 +146,18 @@ public class YonhayaController {
       userMapper.updatePointByUserName(prin.getName(), scoreWeight--);
     } else {
       result = "不正解";
+    }
+
+    for (int i = 1; i < UserResult.size(); i++) {
+      User key = UserResult.get(i);
+      int j = i - 1;
+
+      // key の point より大きい値を右にシフトする
+      while (j >= 0 && UserResult.get(j).getPoint() < key.getPoint()) {
+        UserResult.set(j + 1, UserResult.get(j));
+        j--;
+      }
+      UserResult.set(j + 1, key);
     }
 
     int rankNumber = 1;
