@@ -25,7 +25,6 @@ import oit.is.quizknockn.yonhaya.model.QuizChoices;
 import oit.is.quizknockn.yonhaya.model.QuizChoicecsMapper;
 import oit.is.quizknockn.yonhaya.model.User;
 import oit.is.quizknockn.yonhaya.model.UserMapper;
-import oit.is.quizknockn.yonhaya.model.UserWaitRoom;
 
 @Controller
 @RequestMapping("/yonhaya")
@@ -139,7 +138,6 @@ public class YonhayaController {
   public String judgeQuiz(@RequestParam String choice, ModelMap model, Principal prin) {
     String result;
     String answer = quizChoicecsMapper.selectById(quizID);
-    ArrayList<User> UserResult = userMapper.selectByResult(true);
 
     if (choice.equals(answer)) {
       result = "正解";
@@ -147,6 +145,8 @@ public class YonhayaController {
     } else {
       result = "不正解";
     }
+
+    ArrayList<User> UserResult = userMapper.selectByResult(true);
 
     for (int i = 1; i < UserResult.size(); i++) {
       User key = UserResult.get(i);
