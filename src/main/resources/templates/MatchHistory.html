@@ -1,0 +1,11 @@
+<body>
+  <a href="/yonhaya">戻る</a>
+  <div th:if="${Match_Result}">
+    <div th:each="matchresult, stat : ${Match_Result}">
+      <p>ルームナンバー : [[${matchresult.roomNo}]]</p>
+      <p>ユーザ名 : [[${matchresult.userName}]]</p>
+      <p>得点 : [[${matchresult.point}]]点</p>
+      <p>順位 : [[${matchresult.rank}]]位</p>
+    </div>
+  </div>
+</body>

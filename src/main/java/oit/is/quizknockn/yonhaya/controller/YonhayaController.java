@@ -61,11 +61,17 @@ public class YonhayaController {
   private final int MAX_QUESTIONS = 2;
   private final int MAX_USER_NUMBER = 2;
   private int scoreWeight = 4;
+  // 試合回数の記録用
+  private int Match_history = 0;
+  private int Match_history_flag = 0;
 
   @GetMapping("")
   public String showHomePage(Principal prin, ModelMap model) {
     User loginUser = userMapper.selectByUserName(prin.getName());
     model.addAttribute("loginUser", loginUser);
+    if (Match_history > 0) {
+      model.addAttribute("Match_history", Match_history);
+    }
     return "4haya.html";
   }
 
@@ -212,11 +218,28 @@ public class YonhayaController {
   }
 
   @GetMapping("exit")
-  public String exit(Principal prin) {
+  public String exit(ModelMap model, Principal prin) {
     String loginUser = prin.getName();
     resetGame(loginUser);
 
+    if (Match_history_flag == 0) {
+      Match_history++;
+      Match_history_flag++;
+    } else if (Match_history_flag != 0) {
+      Match_history_flag++;
+    } else if (Match_history_flag == 2) {
+      Match_history_flag = 0;
+    }
+    model.addAttribute("Match_history", Match_history);
+
     return "4haya.html";
+  }
+
+  @GetMapping("Match_history")
+  public String Match_History(ModelMap model) {
+    ArrayList<MatchResult> Match_Result = matchResultMapper.selectMatchResultByAll();
+    model.addAttribute("Match_Result", Match_Result);
+    return "MatchHistory.html";
   }
 
   private void resetGame(String loginUser) {

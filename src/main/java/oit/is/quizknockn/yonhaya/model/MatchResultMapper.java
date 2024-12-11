@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 @Mapper
@@ -17,4 +16,7 @@ public interface MatchResultMapper {
 
   @Select("Select * from MatchResult where roomNo = #{roomNo}")
   ArrayList<MatchResult> selectMatchResultByRoomNo(int roomNo);
+
+  @Select("Select * from MatchResult")
+  ArrayList<MatchResult> selectMatchResultByAll();
 }
