@@ -12,11 +12,17 @@
         var user_number = userWaitRoom.waitingUser;
         var finish_flag = userWaitRoom.finishFlag;
         var user_result = userWaitRoom.userResult;
-        var results = "<a>他の人の解答を待ってます！</a>";
+        var results = "";
         var userRank = "";
 
+        // 終了画面への自動遷移
         if (finish_flag) {
-          results += "<a href='/yonhaya/finish'>結果発表</a>";
+          results += "<a>問題は終了しました<br>結果をお待ちください</a>";
+          setTimeout(function () {
+            window.location.href = '/yonhaya/finish';
+          }, 2000);
+        } else {
+          results += "<a>他の人の解答を待ってます！</a>";
         }
         if (user_number == 2) {
           for (var i = 1; i <= user_result.length; i++) {
