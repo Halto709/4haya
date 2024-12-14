@@ -11,6 +11,7 @@ public class Room {
   private int maxquizINdex = 10;
   ArrayList<String> users = new ArrayList<>();
   ArrayList<Integer> quizOrder = new ArrayList<>();
+  int room_flag = 0;
 
   public boolean addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
@@ -45,6 +46,14 @@ public class Room {
   }
 
   public void clearRoomInfo() {
+    if (room_flag == 0) {
+      room_flag++;
+      roomNo++;
+    } else if (room_flag == 2) {
+      room_flag = 0;
+    } else {
+      room_flag++;
+    }
     users.clear();
     quizOrder.clear();
     roomNo++;
