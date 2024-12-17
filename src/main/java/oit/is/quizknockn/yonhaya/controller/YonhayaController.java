@@ -243,8 +243,8 @@ public class YonhayaController {
     } else if (Match_history_flag == 2) {
       Match_history_flag = 0;
     }
-    model.addAttribute("Match_history", Match_history);
 
+    model.addAttribute("Match_history", Match_history);
     return "4haya.html";
   }
 
