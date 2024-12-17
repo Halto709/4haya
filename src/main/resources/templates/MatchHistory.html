@@ -1,11 +1,36 @@
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>これまでの試合結果</title>
+
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+
 <body>
-  <a href="/yonhaya">戻る</a>
-  <div th:if="${Match_Result}">
-    <div th:each="matchresult, stat : ${Match_Result}">
-      <p>ルームナンバー : [[${matchresult.roomNo}]]</p>
-      <p>ユーザ名 : [[${matchresult.userName}]]</p>
-      <p>得点 : [[${matchresult.point}]]点</p>
-      <p>順位 : [[${matchresult.rank}]]位</p>
-    </div>
+  <div th:if="${Match_Result}" class="container">
+    <h2>これまでの試合結果</h2>
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th>ルームナンバー</th>
+          <th>ユーザ名</th>
+          <th>得点</th>
+          <th>順位</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="matchresult, stat : ${Match_Result}">
+          <td>[[${matchresult.roomNo}]]</td>
+          <td>[[${matchresult.userName}]]</td>
+          <td>[[${matchresult.point}]]</td>
+          <td>[[${matchresult.rank}]]</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/yonhaya" class="btn btn-primary position-fixed top-0 end-0 m-3">戻る</a>
   </div>
+
+
+  <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>

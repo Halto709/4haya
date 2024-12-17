@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>クイズ参加</title>
+  <title>クイズ</title>
 
   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
@@ -10,8 +10,12 @@
 <body style="height: 100vh; margin: 0;">
   <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
     <div th:if="${quiz}">
-      <div><h2>[[${currentQuestionIndex}]]</h2></div>
-      <div><h2>[[${quiz.question}]]</h2></div>
+      <div>
+        <h2>[[${currentQuestionIndex}]]</h2>
+      </div>
+      <div>
+        <h2>[[${quiz.question}]]</h2>
+      </div>
     </div>
 
     <div th:if="${Choices}">
