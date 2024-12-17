@@ -56,7 +56,6 @@ public class Room {
     }
     users.clear();
     quizOrder.clear();
-    roomNo++;
   }
 
   // 以降はフィールドのgetter/setter
