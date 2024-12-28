@@ -2,19 +2,70 @@
 <html>
 
 <head>
+  <!-- ページの文字コードとレスポンシブ設定 -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>クイズ参加</title>
 
+  <!-- Bootstrap CSS の読み込み -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Rampart One フォントの読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+
+  <!-- カスタムスタイルの定義 -->
+  <style>
+    /* ページ全体の設定 */
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: url('background_1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #000000;
+      text-align: center;
+    }
+
+    /* タイトルのスタイル */
+    h1 {
+      font-family: 'Rampart One', cursive;
+      /* フォントをRampart Oneに設定 */
+      font-size: calc(3rem + 2vw);
+      /* サイズをさらに大きく設定 */
+      font-weight: 900;
+      /* フォントの太さを最大に */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 文字に影を追加 */
+      margin-bottom: 20px;
+      /* タイトルの下に余白を追加 */
+    }
+
+    /* ボタンのスタイル */
+    a.btn {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+    }
+
+    /* コンテンツ全体の配置 */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
 </head>
 
 <body>
-  <a href="/yonhaya">クイズに参加</a><br>
+  <!-- 中央に配置するコンテンツ -->
+  <div class="content">
+    <h1>4人で早押し!</h1> <!-- タイトル -->
+    <a href="/yonhaya" class="btn btn-primary">クイズに参加</a> <!-- クイズ参加ボタン -->
+  </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+  <!-- 必要なJavaScriptファイルの読み込み -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery -->
+  <script src="js/bootstrap.min.js"></script> <!-- Bootstrap JavaScript -->
 </body>
 
 </html>

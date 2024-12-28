@@ -1,32 +1,188 @@
+<head>
+  <!-- ページの文字コードとレスポンシブ設定 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クイズ参加</title>
+
+  <!-- Bootstrap CSS の読み込み -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Rampart One フォントの読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+
+
+  <!-- カスタムスタイルの定義 -->
+  <style>
+    /* ページ全体の設定 */
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: url('background_1.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #000000;
+      text-align: left;
+      /* 左揃えに変更 */
+      padding: 20px;
+      /* ページ全体にパディングを追加 */
+    }
+
+    /* タイトルのスタイル */
+    h1 {
+      font-family: 'Rampart One', cursive;
+      font-size: calc(3rem + 2vw);
+      font-weight: 900;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      /* メインタイトルは中央揃え */
+    }
+
+    h2 {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+      font-size: calc(2rem + 1vw);
+      /* サイズを調整 */
+      font-weight: 200;
+      /* 太さを指定 */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 影を追加 */
+      text-align: center;
+    }
+
+    p {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    li {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    /* 章タイトルと横線を整えるスタイル */
+    .section {
+      margin: 40px 0;
+      /* 各セクションの上下に余白を追加 */
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      /* タイトルと横線の間に余白を設定 */
+    }
+
+    .section hr {
+      border: none;
+      /* デフォルトの線スタイルを無効化 */
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      /* 薄い横線を設定 */
+      margin: 0;
+      /* 横線の上下の余白を削除 */
+    }
+
+    /* リンクのスタイル */
+    a.btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    a.btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+
 <body>
-  <a href="/yonhaya">戻る</a>
-  <br>
-  <h1>ヘルプ画面 - yonhaya</h1>
-  <h2>ゲーム概要</h2>
-  <br>「yonhaya（よんはや）」は、4人で早押しクイズを楽しむことができるポイント競争型ゲームです。</br>
-  <br>問題に対して素早く正解し、正確さとスピードで高得点を目指しましょう！</br>
-  <br>・ゲームの流れ</br>
-  <br> 参加者が4人揃うと自動でゲームが開始します。</br>
-  <br>クイズ問題が出題されるので、正解だと思う選択肢をマウスでクリックしてください。</br>
-  <br>回答が正解であれば、回答の速さに応じてポイントが加算されます。</br>
-  <br>・ポイントの仕組み</br>
-  <br>早く正解するほど高いポイントが獲得できます</br>
-  <br>1番目に正解 → 4点</br>
-  <br>2番目に正解 → 3点</br>
-  <br>3番目に正解 → 2点</br>
-  <br>4番目に正解 → 1点</br>
-  <br>不正解の場合は、ポイントは加算されません。</br>
-  <br>・ゲーム終了</br>
-  <br>全てのクイズ問題が終了すると、最終スコアが表示されます。</br>
-  <br>最もポイントが高い人が勝者です！</br>
-  <br>・操作方法</br>
-  <br>正解だと思う選択肢をマウスでクリックしてください。</br>
-  <br>・注意事項</br>
-  <br>ゲームには時間制限はありません。</br>
-  <br>同じタイミングで複数の回答が送信された場合、システムが先着を自動判定します。</br>
-  <br>ゲームの途中退出や遅延にはご注意ください。</br>
-  <br>・楽しむコツ</br>
-  <br>とにかく早く！でも確実に正解することを心がけましょう。</br>
-  <br>友達や家族と一緒に遊ぶと、盛り上がること間違いなし！</br>
-  <h2>さあ、yonhayaで早押しクイズの頂点を目指そう！</h2>
+  <div class="content">
+    <h1>ヘルプ画面</h1> <!-- メインタイトル -->
+
+    <div class="section">
+      <div class="section-title">
+        <p>・ゲーム概要</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>「yonhaya（よんはや）」は、4人で早押しクイズを楽しむことができるポイント競争型ゲームです。</p>
+      <p>問題に対して素早く正解し、正確さとスピードで高得点を目指しましょう！</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <p>・ゲームの流れ</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>参加者が4人揃うと自動でゲームが開始します。</p>
+      <p>クイズ問題が出題されるので、正解だと思う選択肢をマウスでクリックしてください。</p>
+      <p>回答が正解であれば、回答の速さに応じてポイントが加算されます。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <p>・ポイントの仕組み</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>早く正解するほど高いポイントが獲得できます</p>
+      <ul style="list-style: none; padding: 0;">
+        <li>1番目に正解 → 4点</li>
+        <li>2番目に正解 → 3点</li>
+        <li>3番目に正解 → 2点</li>
+        <li>4番目に正解 → 1点</li>
+        <li>不正解の場合は、ポイントは加算されません。</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <p>・ゲーム終了</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>全てのクイズ問題が終了すると、最終スコアが表示されます。</p>
+      <p>最もポイントが高い人が勝者です！</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <p>・操作方法</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>正解だと思う選択肢をマウスでクリックしてください。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <p>・注意事項</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>ゲームには時間制限はありません。</p>
+      <p>同じタイミングで複数の回答が送信された場合、システムが先着を自動判定します。</p>
+      <p>ゲームの途中退出や遅延にはご注意ください。</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">
+        <p>・楽しむコツ</p>
+      </div>
+      <hr> <!-- 横線 -->
+      <p>とにかく早く！でも確実に正解することを心がけましょう。</p>
+      <p>友達や家族と一緒に遊ぶと、盛り上がること間違いなし！</p>
+    </div>
+
+    <h2>さあ、早押しクイズの頂点を目指そう！</h2>
+    <br></br><br></br>
+    <a href="/yonhaya" class="btn btn-primary">戻る</a>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
