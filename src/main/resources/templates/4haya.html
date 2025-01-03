@@ -1,19 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- ページの文字コードとレスポンシブ設定 -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クイズ参加</title>
+
+  <!-- Bootstrap CSS の読み込み -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Rampart One フォントの読み込み -->
+  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+
+  <!-- カスタムスタイルの定義 -->
+  <style>
+    /* ページ全体の設定 */
+    body {
+      height: 100vh;
+      margin: 0;
+      background-size: cover;
+      background-position: center;
+      color: #000000;
+      text-align: center;
+    }
+
+    /* タイトルのスタイル */
+    h1 {
+      font-family: 'Rampart One', cursive;
+      /* フォントをRampart Oneに設定 */
+      font-size: calc(3rem + 2vw);
+      /* サイズをさらに大きく設定 */
+      font-weight: 900;
+      /* フォントの太さを最大に */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 文字に影を追加 */
+      margin-bottom: 20px;
+      /* タイトルの下に余白を追加 */
+    }
+
+    /* ボタンのスタイル */
+    a.btn {
+      padding: 10px 20px;
+      font-size: 1.0rem;
+    }
+
+    /* コンテンツ全体の配置 */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      justify-content: center;
+      /* ボタンを中央に揃える */
+      gap: 20px;
+      /* ボタン間の間隔 */
+    }
+
+    /* 2列に並べるためにボタンを横並びに */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      /* ボタン間の余白 */
+    }
+
+    .button-group a {
+      flex: 0 1 200px;
+      /* ボタンの幅を指定 */
+    }
+  </style>
+</head>
+
 <body>
-  <a href="/yonhaya/di">入室(DI)</a><br>
-  <a href="/yonhaya/help">ゲームのヘルプ</a>
+  <div class="content">
+    <div th:if="${loginUser}">
+      <p>こんにちは！ [[${loginUser.userName}]]さん</p>
+    </div>
 
-  <div>
-    <a href="/yonhaya/Match_history">これまでの試合結果</a>
+    <!-- ボタンを2列で配置 -->
+    <div class="button-group">
+      <a href="/yonhaya/di" class="btn btn-primary">入室(DI)</a><br>
+      <a href="/yonhaya/help" class="btn btn-warning">ゲームのヘルプ</a>
+      <a href="/yonhaya/Match_history" class="btn btn-success">これまでの試合結果</a><br>
+      <a href="/logout" class="btn btn-danger">ログアウト</a>
+    </div>
+
+    <div th:if="${error}">
+      [[${error}]]はすでに入室されています。
+    </div>
+
   </div>
 
-  <div th:if="${error}">
-    [[${error}]]はすでに入室されています。
-  </div>
-
-  <div th:if="${loginUser}">
-    <p>id :[[${loginUser.id}]]</p>
-    <p>userName :[[${loginUser.userName}]]</p>
-  </div>
-
-  <a href="/logout">ログアウト</a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
