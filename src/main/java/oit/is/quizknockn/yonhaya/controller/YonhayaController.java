@@ -55,7 +55,7 @@ public class YonhayaController {
 
   // デモ用のクイズインデックス
   private int currentQuestionIndex = 0;
-  private int j = 0;
+  private int userAnsQuiz = 0;
   private int quizID = 1;
   private int finishNumber = 0;
   private final int MAX_QUESTIONS = 2;
@@ -124,10 +124,10 @@ public class YonhayaController {
     model.addAttribute("quiz", quiz);
     model.addAttribute("Choices", quizChoices);
     model.addAttribute("currentQuestionIndex", currentQuestionIndex + 1);
-    j++;
-    if (j == 2) {
+    userAnsQuiz++;
+    if (userAnsQuiz == 2) {
       currentQuestionIndex++;
-      j = 0;
+      userAnsQuiz = 0;
     }
     scoreWeight = 4;
 

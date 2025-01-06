@@ -20,11 +20,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr th:each="matchresult, stat : ${Match_Result}">
-          <td>[[${matchresult.roomNo}]]</td>
-          <td>[[${matchresult.userName}]]</td>
-          <td>[[${matchresult.point}]]</td>
-          <td>[[${matchresult.rank}]]</td>
+        <tr th:each="matchResult, stat : ${Match_Result}">
+          <td>[[${matchResult.roomNo}]]</td>
+          <td>[[${matchResult.userName}]]</td>
+          <td>[[${matchResult.point}]]</td>
+          <td>[[${matchResult.rank}]]</td>
         </tr>
       </tbody>
     </table>

@@ -1,12 +1,35 @@
-<body>
-  <a href="/yonhaya/exit">ログアウト</a>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <div th:if="${UserResult}">
-    <div th:each="userresult, stat : ${UserResult}">
-      <p>[[${userresult.rank}]]位</p>
-      <p>ユーザ名 : [[${userresult.userName}]]</p>
-      <p>得点 : [[${userresult.point}]]点</p>
-    </div>
+  <title>試合結果</title>
+
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+
+<body>
+  <!-- UserResult が存在する場合のみ表示 -->
+  <div th:if="${UserResult}" class="container mt-4">
+    <h2>試合結果</h2>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+        <tr>
+          <th>順位</th>
+          <th>ユーザ名</th>
+          <th>得点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- データを繰り返し表示 -->
+        <tr th:each="userResult : ${UserResult}">
+          <td>[[${userResult.rank}]]</td>
+          <td>[[${userResult.userName}]]</td>
+          <td>[[${userResult.point}]]</td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/yonhaya/exit" class="btn btn-primary position-fixed top-0 end-0 m-3">ルームを退室</a>
   </div>
 
+  <script th:src="@{/js/bootstrap.min.js}"></script>
 </body>
