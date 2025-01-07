@@ -81,10 +81,14 @@
 
     <!-- ボタンを2列で配置 -->
     <div class="button-group">
-      <a href="/yonhaya/di" class="btn btn-primary">入室(DI)</a><br>
+      <a href="/yonhaya/di" class="btn btn-primary">入室</a><br>
       <a href="/yonhaya/help" class="btn btn-warning">ゲームのヘルプ</a>
       <a href="/yonhaya/Match_history" class="btn btn-success">これまでの試合結果</a><br>
       <a href="/logout" class="btn btn-danger">ログアウト</a>
+    </div>
+
+    <div sec:authorize="hasRole('ROLE_OWNER')">
+      <a href="/yonhaya/ownerReset" class="btn btn-primary">ゲームリセット</a><br>
     </div>
 
     <div th:if="${error}">
