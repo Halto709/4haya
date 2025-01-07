@@ -268,4 +268,10 @@ public class YonhayaController {
 
   }
 
+  @GetMapping("ownerReset")
+  private String ownerReset() {
+    resetGame(null);
+    return "4haya.html";
+  }
+
 }
