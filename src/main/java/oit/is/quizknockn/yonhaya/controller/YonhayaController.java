@@ -269,17 +269,16 @@ public class YonhayaController {
     // 現在のroomNoが過去の試合結果に存在する場合
     // （roomNoに重複がある場合）
     if (matchResultMapper.existMatchResultByRoomNo(room.getRoomNo())) {
-      userMapper.updateByUserIsActive(loginUser, false);
-      userMapper.setPointZero();
-      userMapper.setRankZero();
       room.clearRoomInfo();
-      currentQuestionIndex = 0;
-      quizID = 1;
-      asyncJoinRoom.clearuserJoin();
-      asyncWaitRoom.clearWait();
-      finishNumber = 0;
     }
-
+    userMapper.updateByUserIsActive(loginUser, false);
+    userMapper.setPointZero();
+    userMapper.setRankZero();
+    currentQuestionIndex = 0;
+    quizID = 1;
+    asyncJoinRoom.clearuserJoin();
+    asyncWaitRoom.clearWait();
+    finishNumber = 0;
   }
 
   @GetMapping("ownerReset")
