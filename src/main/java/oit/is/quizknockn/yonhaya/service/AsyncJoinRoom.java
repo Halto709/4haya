@@ -23,6 +23,7 @@ public class AsyncJoinRoom {
   }
 
   public void clearuserJoin() {
+    logger.info("reset joinedUser");
     joinedUser.clear();
   }
 

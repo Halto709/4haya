@@ -19,6 +19,7 @@
 
       const sse = new EventSource('/yonhaya/waitInfo');
       sse.onmessage = function (event) {
+        const MAX_USER_NUMBER = 2;
         console.log("sse.onmessage");
         var userWaitRoom = JSON.parse(event.data);
         var user_number = userWaitRoom.waitingUser;
@@ -37,7 +38,7 @@
         } else {
           results += "<a>他の人の解答を待ってます！</a>";
         }
-        if (user_number == 2) {
+        if (user_number == MAX_USER_NUMBER) {
           userRank += `<a>現在のランキング</a>
                        <table class="table">
                        <thead class="table-dark">

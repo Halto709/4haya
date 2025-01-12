@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -89,6 +90,12 @@ public class YonhayaController {
       model.addAttribute("room", this.room);
       // ユーザがルームに追加されたら、isActiveをtrueにする。
       userMapper.updateByUserIsActive(loginUser, true);
+
+      // 検証用
+      System.out.println("User Login");
+      for (int i = 0; i < room.getUsers().size(); i++) {
+        System.out.println(room.getUsers().get(i));
+      }
       return "joinRoom.html";
     }
     model.addAttribute("error", loginUser);
@@ -97,17 +104,19 @@ public class YonhayaController {
 
   // ルームに誰が入っているか非同期で表示
   @GetMapping("roomInfo")
+  @Transactional
   public SseEmitter roomInfo() {
     logger.info("pushRoomUsers");
-    SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
+    SseEmitter emitter = new SseEmitter((long) (1 * 60 * 1000));
     this.asyncJoinRoom.pushRoomUsers(emitter);
     return emitter;
   }
 
   @GetMapping("waitInfo")
+  @Transactional
   public SseEmitter waitInfo() {
     logger.info("pushWaitRoom");
-    SseEmitter emitter = new SseEmitter(Long.MAX_VALUE);
+    SseEmitter emitter = new SseEmitter((long) (1 * 60 * 1000));
     this.asyncWaitRoom.pushWaitRoom(emitter);
     return emitter;
   }
@@ -125,7 +134,7 @@ public class YonhayaController {
     model.addAttribute("Choices", quizChoices);
     model.addAttribute("currentQuestionIndex", currentQuestionIndex + 1);
     userAnsQuiz++;
-    if (userAnsQuiz == 2) {
+    if (userAnsQuiz == MAX_USER_NUMBER) {
       currentQuestionIndex++;
       userAnsQuiz = 0;
     }
@@ -240,7 +249,7 @@ public class YonhayaController {
       Match_history_flag++;
     } else if (Match_history_flag != 0) {
       Match_history_flag++;
-    } else if (Match_history_flag == 2) {
+    } else if (Match_history_flag == MAX_USER_NUMBER) {
       Match_history_flag = 0;
     }
 
@@ -255,16 +264,21 @@ public class YonhayaController {
     return "MatchHistory.html";
   }
 
+  // ルーム情報をリセットする
   private void resetGame(String loginUser) {
-    userMapper.updateByUserIsActive(loginUser, false);
-    userMapper.setPointZero();
-    userMapper.setRankZero();
-    room.clearRoomInfo();
-    currentQuestionIndex = 0;
-    quizID = 1;
-    asyncJoinRoom.clearuserJoin();
-    asyncWaitRoom.clearWait();
-    finishNumber = 0;
+    // 現在のroomNoが過去の試合結果に存在する場合
+    // （roomNoに重複がある場合）
+    if (matchResultMapper.existMatchResultByRoomNo(room.getRoomNo())) {
+      userMapper.updateByUserIsActive(loginUser, false);
+      userMapper.setPointZero();
+      userMapper.setRankZero();
+      room.clearRoomInfo();
+      currentQuestionIndex = 0;
+      quizID = 1;
+      asyncJoinRoom.clearuserJoin();
+      asyncWaitRoom.clearWait();
+      finishNumber = 0;
+    }
 
   }
 
