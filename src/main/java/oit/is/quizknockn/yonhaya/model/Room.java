@@ -10,7 +10,7 @@ public class Room {
 
   final int MAX_USER_NUMBER = 2;
   int roomNo = 1;
-  private int maxquizINdex = 10;
+  private int maxquizINdex = 50;
   ArrayList<String> users = new ArrayList<>();
   ArrayList<Integer> quizOrder = new ArrayList<>();
 

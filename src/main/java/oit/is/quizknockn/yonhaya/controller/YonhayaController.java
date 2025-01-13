@@ -59,7 +59,7 @@ public class YonhayaController {
   private int userAnsQuiz = 0;
   private int quizID = 1;
   private int finishNumber = 0;
-  private final int MAX_QUESTIONS = 2;
+  private final int MAX_QUESTIONS = 10;
   private final int MAX_USER_NUMBER = 2;
   private int scoreWeight = 4;
   // 試合回数の記録用
@@ -69,7 +69,7 @@ public class YonhayaController {
   @GetMapping("")
   public String showHomePage(Principal prin, ModelMap model) {
     User loginUser = userMapper.selectByUserName(prin.getName());
-    model.addAttribute("loginUser", loginUser);
+    model.addAttribute("loginUser", loginUser.getUserName());
     if (Match_history > 0) {
       model.addAttribute("Match_history", Match_history);
     }
@@ -253,6 +253,7 @@ public class YonhayaController {
       Match_history_flag = 0;
     }
 
+    model.addAttribute("loginUser", loginUser);
     model.addAttribute("Match_history", Match_history);
     return "4haya.html";
   }
