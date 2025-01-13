@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class Room {
 
-  final int MAX_USER_NUMBER = 2;
+  final int MAX_USER_NUMBER = 3;
   int roomNo = 1;
   private int maxquizINdex = 50;
   ArrayList<String> users = new ArrayList<>();

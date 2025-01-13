@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import oit.is.quizknockn.yonhaya.model.UserWaitRoom;
 
 import oit.is.quizknockn.yonhaya.model.User;
+import oit.is.quizknockn.yonhaya.model.UserMapper;
 
 @Service
 public class AsyncWaitRoom {
@@ -21,6 +22,8 @@ public class AsyncWaitRoom {
   private UserWaitRoom userWaitRoom;
 
   private boolean userUpdate = false;
+
+  private final int MAX_USER_NUMBER = 3;
 
   @Async
   public void userWait() {
@@ -58,7 +61,7 @@ public class AsyncWaitRoom {
         }
 
         // 新しいユーザが追加されていれば，その情報を送信
-        logger.info("send(RoomAnsUsers)");
+        logger.info("send(RoomUsers)");
 
         TimeUnit.MILLISECONDS.sleep(100);// 0.1秒STOP
         // JSONオブジェクトがクライアントに送付される
