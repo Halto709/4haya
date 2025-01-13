@@ -14,7 +14,7 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage");
         var user_list = JSON.parse(event.data);
-        const MAX_USER_NUMBER = 2;
+        const MAX_USER_NUMBER = 3;
 
         results = "";
 
@@ -35,6 +35,14 @@
         }
 
         document.getElementById("roomInfo").innerHTML = results;
+
+        window.onbeforeunload = function () {
+          if (sse) {
+            sse.close();
+            console.log("SSE接続を終了しました");
+          }
+        };
+
 
       }
     }

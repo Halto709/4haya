@@ -4,84 +4,115 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>クイズ</title>
-
   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-</head>
 
-<head>
-  <meta charset="utf-8">
-  <title>janken result</title>
   <script>
     window.onload = function () {
+      const MAX_USER_NUMBER = 3;
+      const MAX_QUIZ = 10;
 
-
-      const sse = new EventSource('/yonhaya/waitInfo');
-      sse.onmessage = function (event) {
-        const MAX_USER_NUMBER = 2;
-        console.log("sse.onmessage");
-        var userWaitRoom = JSON.parse(event.data);
-        var user_number = userWaitRoom.waitingUser;
-        var finish_flag = userWaitRoom.finishFlag;
-        var user_result = userWaitRoom.userResult;
-        var results = "";
-        var userRank = "";
-
-
-        // 終了画面への自動遷移
-        if (finish_flag) {
-          results += "<a>問題は終了しました<br>結果をお待ちください</a>";
-          setTimeout(function () {
-            window.location.href = '/yonhaya/finish';
-          }, 2000);
-        } else {
-          results += "<a>他の人の解答を待ってます！</a>";
-        }
-        if (user_number % MAX_USER_NUMBER == 0 && user_number != 20) {
-          userRank += `<a>現在のランキング</a>
-                       <table class="table">
-                       <thead class="table-dark">
-                          <tr>
-                            <th>順位</th>
-                            <th>ユーザー名</th>
-                            <th>得点</th>
-                          </tr>
-                        </thead>
-                        <tbody>`;
-          for (var i = 0; i < user_result.length; i++) {
-            userRank += `<tr>
-                          <td>${user_result[i].rank}位</td>
-                          <td>${user_result[i].userName}</td>
-                          <td>${user_result[i].point}点</td>
-                         </tr>`;
-          }
-          userRank += `</tbody></table>`;
-
-          setTimeout(function () {
-            window.location.href = '/yonhaya/quiz';
-          }, 2000); // 2秒
-        }
-
-        document.getElementById("rank").innerHTML = userRank;
-        document.getElementById("waitInfo").innerHTML = results;
+      // EventSourceの初期化
+      let sse;
+      if (!sse) {
+        sse = new EventSource('/yonhaya/waitInfo');
+        console.log("SSE接続を開始しました");
       }
-    }
+
+      // SSEメッセージ受信時の処理
+      sse.onmessage = function (event) {
+        try {
+          console.log("sse.onmessage");
+          const userWaitRoom = JSON.parse(event.data);
+          const user_number = userWaitRoom.waitingUser;
+          const finish_flag = userWaitRoom.finishFlag;
+          const user_result = userWaitRoom.userResult;
+          let results = "";
+          let userRank = "";
+
+          // 終了画面への自動遷移
+          if (finish_flag) {
+            results += "<a>問題は終了しました<br>結果をお待ちください</a>";
+            setTimeout(function () {
+              window.location.href = '/yonhaya/finish';
+            }, 2000);
+          } else {
+            results += "<a>他の人の解答を待っています！</a>";
+          }
+
+          // ユーザー数が条件を満たした場合のランキング表示
+          if (user_number % MAX_USER_NUMBER === 0 && user_number !== MAX_USER_NUMBER * MAX_QUIZ) {
+            userRank += `<a>現在のランキング</a>
+                         <table class="table">
+                         <thead class="table-dark">
+                            <tr>
+                              <th>順位</th>
+                              <th>ユーザー名</th>
+                              <th>得点</th>
+                            </tr>
+                          </thead>
+                          <tbody>`;
+            for (let i = 0; i < user_result.length; i++) {
+              userRank += `<tr>
+                            <td>${user_result[i].rank}位</td>
+                            <td>${user_result[i].userName}</td>
+                            <td>${user_result[i].point}点</td>
+                           </tr>`;
+            }
+            userRank += `</tbody></table>`;
+
+            // クイズ画面に遷移
+            setTimeout(function () {
+              window.location.href = '/yonhaya/quiz';
+            }, 2000); // 2秒
+          }
+
+          // DOMに反映
+          document.getElementById("rank").innerHTML = userRank;
+          document.getElementById("waitInfo").innerHTML = results;
+
+        } catch (error) {
+          console.error("データ処理中にエラーが発生しました:", error);
+          document.getElementById("waitInfo").innerHTML = "<p>エラーが発生しました。再読み込みしてください。</p>";
+        }
+      };
+
+      // エラーハンドリング
+      sse.onerror = function () {
+        console.error("SSE接続エラーが発生しました"); document.getElementById("waitInfo").innerHTML = "<p>サーバーとの接続に問題があります。再試行中...</p>"; // 再試行のために接続を再度確立
+        setTimeout(function () { sse = new EventSource('/yonhaya/waitInfo'); }, 5000); // 5秒後に再試行
+      }
+
+      // ページを離れるときに接続を閉じる
+      window.onbeforeunload = function () {
+        if (sse) {
+          sse.close();
+          console.log("SSE接続を終了しました");
+        }
+      };
+    };
   </script>
 </head>
 
-<bodystyle="height: 100vh; margin: 0;">
+<body style="height: 100vh; margin: 0;">
   <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
     <div th:if="${result}">
+      <!-- クイズ結果を表示 -->
       [[${result}]]
     </div>
 
     <div id="waitInfo">
+      <!-- 待機メッセージを表示 -->
     </div>
 
     <div id="rank">
       <a>現在のランキング</a>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
-    </body>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

@@ -60,7 +60,7 @@ public class YonhayaController {
   private int quizID = 1;
   private int finishNumber = 0;
   private final int MAX_QUESTIONS = 10;
-  private final int MAX_USER_NUMBER = 2;
+  private final int MAX_USER_NUMBER = 3;
   private int scoreWeight = 4;
   // 試合回数の記録用
   private int Match_history = 0;
