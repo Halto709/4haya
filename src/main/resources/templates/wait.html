@@ -38,7 +38,7 @@
         } else {
           results += "<a>他の人の解答を待ってます！</a>";
         }
-        if (user_number == MAX_USER_NUMBER) {
+        if (user_number % MAX_USER_NUMBER == 0 && user_number != 20) {
           userRank += `<a>現在のランキング</a>
                        <table class="table">
                        <thead class="table-dark">
