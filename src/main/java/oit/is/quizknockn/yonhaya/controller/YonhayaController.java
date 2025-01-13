@@ -282,10 +282,11 @@ public class YonhayaController {
     asyncJoinRoom.clearuserJoin();
     asyncWaitRoom.clearWait();
     finishNumber = 0;
+
   }
 
   @GetMapping("ownerReset")
-  private String ownerReset() {
+  public String ownerReset() {
     resetGame(null);
     return "4haya.html";
   }
