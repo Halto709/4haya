@@ -14,6 +14,7 @@
       sse.onmessage = function (event) {
         console.log("sse.onmessage");
         var user_list = JSON.parse(event.data);
+        const MAX_USER_NUMBER = 2;
 
         results = "";
 
@@ -25,7 +26,7 @@
           results += result; // 結果を連結
         }
 
-        if (user_list.length == 2) {
+        if (user_list.length == MAX_USER_NUMBER) {
           results += "<a>まもなくクイズが始まります！</a>"
           // 数秒待機してからクイズ画面に遷移
           setTimeout(function () {

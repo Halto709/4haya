@@ -19,4 +19,7 @@ public interface MatchResultMapper {
 
   @Select("Select * from MatchResult")
   ArrayList<MatchResult> selectMatchResultByAll();
+
+  @Select("SELECT EXISTS(SELECT 1 FROM MatchResult WHERE roomNo = #{roomNo});")
+  boolean existMatchResultByRoomNo(int roomNo);
 }

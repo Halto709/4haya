@@ -7,11 +7,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Room {
+
+  final int MAX_USER_NUMBER = 2;
   int roomNo = 1;
   private int maxquizINdex = 10;
   ArrayList<String> users = new ArrayList<>();
   ArrayList<Integer> quizOrder = new ArrayList<>();
-  int room_flag = 0;
 
   public boolean addUser(String name) {
     // 同名のユーザが居たら何もせずにreturn
@@ -23,7 +24,7 @@ public class Room {
     // 同名のユーザが居なかった場合はusersにnameを追加する
     this.users.add(name);
 
-    if (users.size() == 2) {
+    if (users.size() == MAX_USER_NUMBER) {
       int i = 0;
       while (i < 10) {
         int randomQuizID = ThreadLocalRandom.current().nextInt(1, maxquizINdex + 1);
@@ -46,14 +47,7 @@ public class Room {
   }
 
   public void clearRoomInfo() {
-    if (room_flag == 0) {
-      room_flag++;
-      roomNo++;
-    } else if (room_flag == 2) {
-      room_flag = 0;
-    } else {
-      room_flag++;
-    }
+    roomNo++;
     users.clear();
     quizOrder.clear();
   }
