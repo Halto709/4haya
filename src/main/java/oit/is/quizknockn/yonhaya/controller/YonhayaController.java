@@ -58,6 +58,7 @@ public class YonhayaController {
   private int currentQuestionIndex = 0;
   private int userAnsQuiz = 0;
   private int quizID = 1;
+  private int corect = 1;
   private int finishNumber = 0;
   private final int MAX_QUESTIONS = 10;
   private final int MAX_USER_NUMBER = 3;
@@ -139,6 +140,7 @@ public class YonhayaController {
       userAnsQuiz = 0;
     }
     scoreWeight = 4;
+    corect = 1;
 
     return "quiz.html";
   }
@@ -149,7 +151,7 @@ public class YonhayaController {
     String answer = quizChoicecsMapper.selectById(quizID);
 
     if (choice.equals(answer)) {
-      result = "正解";
+      result = corect++ + "番目に正解!";
       userMapper.updatePointByUserName(prin.getName(), scoreWeight--);
     } else {
       result = "不正解";
@@ -280,10 +282,11 @@ public class YonhayaController {
     asyncJoinRoom.clearuserJoin();
     asyncWaitRoom.clearWait();
     finishNumber = 0;
+
   }
 
   @GetMapping("ownerReset")
-  private String ownerReset() {
+  public String ownerReset() {
     resetGame(null);
     return "4haya.html";
   }

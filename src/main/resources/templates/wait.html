@@ -7,6 +7,95 @@
   <title>クイズ</title>
   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* ページ全体の設定 */
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: url("[[@{/background_2.jpg}]]");
+      background-size: cover;
+      background-position: center;
+      color: #000000;
+      text-align: center;
+    }
+
+    /* タイトルのスタイル */
+    h1 {
+      font-family: 'Rampart One', cursive;
+      /* フォントをRampart Oneに設定 */
+      font-size: calc(3rem + 2vw);
+      /* サイズをさらに大きく設定 */
+      font-weight: 900;
+      /* フォントの太さを最大に */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 文字に影を追加 */
+      margin-bottom: 20px;
+      /* タイトルの下に余白を追加 */
+    }
+
+    h2 {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+      font-size: calc(1rem + 1vw);
+      /* サイズを調整 */
+      font-weight: 200;
+      /* 太さを指定 */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 影を追加 */
+      text-align: center;
+    }
+
+
+    th {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    td {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    a {
+      font-size: calc(1rem + 1vw);
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    /* ボタンのスタイル */
+    a.btn {
+      padding: 10px 20px;
+      font-size: 1.0rem;
+    }
+
+    /* コンテンツ全体の配置 */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      justify-content: center;
+      /* ボタンを中央に揃える */
+      gap: 20px;
+      /* ボタン間の間隔 */
+    }
+
+    /* 2列に並べるためにボタンを横並びに */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      /* ボタン間の余白 */
+    }
+
+    .button-group a {
+      flex: 0 1 200px;
+      /* ボタンの幅を指定 */
+    }
+  </style>
   <script>
     window.onload = function () {
       const MAX_USER_NUMBER = 3;
@@ -37,12 +126,12 @@
               window.location.href = '/yonhaya/finish';
             }, 2000);
           } else {
-            results += "<a>他の人の解答を待っています！</a>";
+            results += "<br><a>他の人の解答を待っています！</a>";
           }
 
           // ユーザー数が条件を満たした場合のランキング表示
           if (user_number % MAX_USER_NUMBER === 0 && user_number !== MAX_USER_NUMBER * MAX_QUIZ) {
-            userRank += `<a>現在のランキング</a>
+            userRank += `<h2>現在のランキング</h2>
                          <table class="table">
                          <thead class="table-dark">
                             <tr>
@@ -95,10 +184,10 @@
 </head>
 
 <body style="height: 100vh; margin: 0;">
-  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+  <div style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
     <div th:if="${result}">
       <!-- クイズ結果を表示 -->
-      [[${result}]]
+      <h1>[[${result}]]<h1>
     </div>
 
     <div id="waitInfo">

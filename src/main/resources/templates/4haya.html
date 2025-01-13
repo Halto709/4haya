@@ -10,8 +10,7 @@
   <!-- Bootstrap CSS の読み込み -->
   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
-  <!-- Rampart One フォントの読み込み -->
-  <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
 
   <!-- カスタムスタイルの定義 -->
   <style>
@@ -19,6 +18,7 @@
     body {
       height: 100vh;
       margin: 0;
+      background-image: url("[[@{/background_5.jpg}]]");
       background-size: cover;
       background-position: center;
       color: #000000;
@@ -26,17 +26,26 @@
     }
 
     /* タイトルのスタイル */
-    h1 {
-      font-family: 'Rampart One', cursive;
-      /* フォントをRampart Oneに設定 */
-      font-size: calc(3rem + 2vw);
-      /* サイズをさらに大きく設定 */
-      font-weight: 900;
-      /* フォントの太さを最大に */
+    h2 {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+      font-size: calc(1rem + 1vw);
+      /* サイズを調整 */
+      font-weight: 50;
+      /* 太さを指定 */
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      /* 文字に影を追加 */
-      margin-bottom: 20px;
-      /* タイトルの下に余白を追加 */
+      /* 影を追加 */
+      text-align: center;
+    }
+
+    p {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    a {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
     }
 
     /* ボタンのスタイル */
@@ -76,7 +85,7 @@
 <body>
   <div class="content">
     <div th:if="${loginUser}">
-      <p>こんにちは！ [[${loginUser}]]さん</p>
+      <h2>こんにちは！ [[${loginUser}]]さん</h2>
     </div>
 
     <!-- ボタンを2列で配置 -->
@@ -88,11 +97,11 @@
     </div>
 
     <div sec:authorize="hasRole('ROLE_OWNER')">
-      <a href="/yonhaya/ownerReset" class="btn btn-primary">ゲームリセット</a><br>
+      <br><a href="/yonhaya/ownerReset" class="btn btn-primary">ゲームリセット</a>
     </div>
 
     <div th:if="${error}">
-      [[${error}]]はすでに入室されています。
+      <p>[[${error}]]はすでに入室されています。</p>
     </div>
 
   </div>
