@@ -7,6 +7,98 @@
 
   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 
+  <link href="https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap" rel="stylesheet">
+
+  <style>
+    /* ページ全体の設定 */
+    body {
+      height: 100vh;
+      margin: 0;
+      background-image: url("[[@{/background_2.jpg}]]");
+      background-size: cover;
+      background-position: center;
+      color: #000000;
+      text-align: center;
+    }
+
+    /* タイトルのスタイル */
+    h1 {
+      font-family: 'Rampart One', cursive;
+      /* フォントをRampart Oneに設定 */
+      font-size: calc(3rem + 2vw);
+      /* サイズをさらに大きく設定 */
+      font-weight: 900;
+      /* フォントの太さを最大に */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 文字に影を追加 */
+      margin-bottom: 20px;
+      /* タイトルの下に余白を追加 */
+    }
+
+    h2 {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+      font-size: calc(2rem + 1vw);
+      /* サイズを調整 */
+      font-weight: 200;
+      /* 太さを指定 */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 影を追加 */
+      text-align: center;
+    }
+
+    h4 {
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+      font-size: calc(1rem + 1vw);
+      /* サイズを調整 */
+      font-weight: 100;
+      /* 太さを指定 */
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      /* 影を追加 */
+      text-align: center;
+    }
+
+    p {
+      font-size: calc(1rem + 1vw);
+      /* サイズを調整 */
+      font-family: 'RocknRoll One', sans-serif;
+      /* 正しいフォント名を指定 */
+    }
+
+    /* ボタンのスタイル */
+    a.btn {
+      padding: 10px 20px;
+      font-size: 1.0rem;
+    }
+
+    /* コンテンツ全体の配置 */
+    .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      justify-content: center;
+      /* ボタンを中央に揃える */
+      gap: 20px;
+      /* ボタン間の間隔 */
+    }
+
+    /* 2列に並べるためにボタンを横並びに */
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      /* ボタン間の余白 */
+    }
+
+    .button-group a {
+      flex: 0 1 200px;
+      /* ボタンの幅を指定 */
+    }
+  </style>
+
   <script>
     window.onload = function () {
 
@@ -27,7 +119,7 @@
         }
 
         if (user_list.length == MAX_USER_NUMBER) {
-          results += "<a>まもなくクイズが始まります！</a>"
+          results += "<h4>まもなくクイズが始まります！</h4>"
           // 数秒待機してからクイズ画面に遷移
           setTimeout(function () {
             window.location.href = '/yonhaya/quiz';
@@ -50,12 +142,12 @@
 </head>
 
 
-<body class="d-flex justify-content-center align-items-center" style="height: 100vh; background-color: #f8f9fa;">
+<body class="d-flex justify-content-center align-items-center" style="height: 70vh; background-color: #f8f9fa;">
   <div class="text-center">
 
     <div th:if="${room}">
       <!--roomオブジェクトのroomNoというフィールドを指定している-->
-      <h4>RoomNo:[[${room.roomNo}]]</h4>
+      <h2>RoomNo:[[${room.roomNo}]]</h2>
     </div>
 
     <div id="roomInfo"></div>
