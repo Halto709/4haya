@@ -23,7 +23,7 @@ public class AsyncWaitRoom {
 
   private boolean userUpdate = false;
 
-  private final int MAX_USER_NUMBER = 3;
+  private final int MAX_USER_NUMBER = 2;
 
   @Async
   public void userWait() {
